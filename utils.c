@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 13:08:02 by akhalid           #+#    #+#             */
-/*   Updated: 2021/12/16 11:37:12 by akhalid          ###   ########.fr       */
+/*   Created: 2021/12/16 11:08:52 by akhalid           #+#    #+#             */
+/*   Updated: 2021/12/16 11:09:06 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int main(int argc, char **argv, char **envv)
+int ft_strlen(char *s)
 {
-	char *line;
-	t_command *cmd;
-	t_env *env;
+	int i;
 
-	while ((line = readline("Minishell> ")))
-	{
-		env = parse_envv(envv);
-		cmd = parse_commands(line, env);
-	}
-	return (0);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);	
 }
