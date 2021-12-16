@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:08:15 by akhalid           #+#    #+#             */
-/*   Updated: 2021/12/16 11:36:45 by akhalid          ###   ########.fr       */
+/*   Updated: 2021/12/16 16:16:54 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void init_cmd(t_env **env)
 {
 	(*env)->key = NULL;
 	(*env)->value = NULL;
+	(*env)->next = NULL;
 }
 
 t_env	*parse_envv(char **envv)

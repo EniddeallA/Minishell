@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2021/12/16 11:37:38 by akhalid          ###   ########.fr       */
+/*   Updated: 2021/12/16 16:16:57 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,23 @@
 
 typedef struct s_redirect
 {
-    int type;
-    char *value;
-    struct s_redirect *next;
+	int type;
+	char *value;
+	struct s_redirect *next;
 }   t_redirect;
 
 typedef struct s_command
 {
-    char *command;
-    char **args;
-    t_redirect *in;
-    t_redirect *out;
+	char **args;
+	t_redirect *in;
+	t_redirect *out;
 }   t_command;
 
 typedef struct s_env
 {
-    char *key;
-    char *value;
+	char *key;
+	char *value;
+	struct s_env *next;
 }   t_env;
 
 

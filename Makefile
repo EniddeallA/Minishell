@@ -6,7 +6,7 @@
 #    By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 14:24:17 by akhalid           #+#    #+#              #
-#    Updated: 2021/11/29 17:11:59 by akhalid          ###   ########.fr        #
+#    Updated: 2021/12/16 15:26:28 by akhalid          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,10 @@ LRL			=	"-lreadline"
 LDFLAGS		=	"-L/Users/akhalid/homebrew/Cellar/readline/8.1.1/lib"
 CPPFLAGS	=	"-I/Users/akhalid/homebrew/Cellar/readline/8.1.1/include"
 
-SRC_MAIN		=	main.c
+SRC_MAIN		=	main.c \
+					parse_env.c \
+					parse_cmd.c \
+					utils.c \
 
 
 SRCS		=	$(SRC_MAIN)
@@ -25,7 +28,7 @@ SRCS		=	$(SRC_MAIN)
 all: $(NAME)
 
 $(NAME): $(SRCS)
-	@gcc $(LRL) $(CFLAG) $(LDFLAGS) $(CPPFLAGS) $(SRCS) -o $(NAME)
+	@gcc $(LRL)  $(LDFLAGS) $(CPPFLAGS) $(SRCS) -o $(NAME)
 	
 clean:
 	@rm -rf *.o
