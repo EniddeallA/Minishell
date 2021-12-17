@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2021/12/16 16:16:57 by akhalid          ###   ########.fr       */
+/*   Updated: 2021/12/16 16:19:28 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,5 @@ typedef struct s_env
 t_command   *parse_commands(char *line, t_env *env);
 t_env *parse_envv(char **envv);
 int ft_strlen(char *s);
-
 
 #endif
