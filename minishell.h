@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2021/12/16 16:19:28 by akhalid          ###   ########.fr       */
+/*   Updated: 2021/12/17 18:44:03 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,24 @@ typedef struct s_redirect
 	struct s_redirect *next;
 }   t_redirect;
 
+typedef struct s_env
+{
+	char *key;
+	char *value;
+}   t_env;
+
 typedef struct s_command
 {
 	char **args;
 	t_redirect *in;
 	t_redirect *out;
+	int n_env;
+	t_env *env;
+	int n_cmd;
 }   t_command;
 
-typedef struct s_env
-{
-	char *key;
-	char *value;
-	struct s_env *next;
-}   t_env;
-
-
-t_command   *parse_commands(char *line, t_env *env);
-t_env *parse_envv(char **envv);
-int ft_strlen(char *s);
+void	parse_commands(t_command **cmd, char *line);
+void	parse_envv(t_command **cmd, char **envv);
+int		ft_strlen(char *s);
 
 #endif

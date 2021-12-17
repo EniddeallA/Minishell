@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:09:52 by akhalid           #+#    #+#             */
-/*   Updated: 2021/12/16 16:19:22 by akhalid          ###   ########.fr       */
+/*   Updated: 2021/12/17 18:47:45 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void init_cmd(t_command **cmd)
 	(*cmd)->args = NULL;
 	(*cmd)->in = NULL;
 	(*cmd)->out = NULL;
+	(*cmd)->out = NULL;
+	(*cmd)->out = NULL;
 }
 
 char *env_to_key(char *str, int i)
@@ -58,7 +60,7 @@ char *env_to_key(char *str, int i)
 	return (key);
 }
 
-void expand_command(char *line, t_env *env)
+void expand_command(char *line, t_command **cmd)
 {
 	int i;
 	int start;
@@ -74,32 +76,28 @@ void expand_command(char *line, t_env *env)
 			while (line[i] != ' ')
 				i++;
 			key = env_to_key(&line[start], i);
-			j = 0;
-			while (env[j])
+			j = -1;
+			while (j++ < (*cmd)->n_env)
 			{
-				
-				j++;
+				//IM HERE
 			}
 		}
 	}
 }
 
-t_command *parse_commands(char *line, t_env *env)
+void	parse_commands(t_command **cmd, char *line)
 {
-	t_command *cmd;
 	int n_cmd;
 	int i;
 
-	n_cmd = number_of_commands(line);
-	cmd = (t_command *)malloc(sizeof(t_command) * (n_cmd + 1));
-	init_cmd(&cmd);
-	expand_command(line, env);
+	(*cmd)->n_cmd = number_of_commands(line);
+	*cmd = (t_command *)malloc(sizeof(t_command) * (n_cmd + 1));
+	init_cmd(cmd);
+	expand_command(line, cmd);
 	i = -1;
-	while (++i < n_cmd)
+	while (++i < (*cmd)->n_cmd)
 	{
-		
 		// parse_command(line, &cmd[i]);
 	}
-	
 	return (cmd);
 }

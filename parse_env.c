@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:08:15 by akhalid           #+#    #+#             */
-/*   Updated: 2021/12/16 16:16:54 by akhalid          ###   ########.fr       */
+/*   Updated: 2021/12/17 18:40:26 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,28 +58,26 @@ t_env split_env(char *envv, char c)
 	return (env);
 }
 
-void init_cmd(t_env **env)
+void init_cmd(t_env *env)
 {
-	(*env)->key = NULL;
-	(*env)->value = NULL;
-	(*env)->next = NULL;
+	env->key = NULL;
+	env->value = NULL;
 }
 
-t_env	*parse_envv(char **envv)
+void	parse_envv(t_command **cmd, char **envv)
 {
 	int i;
-	t_env *env;
 	
 	i = 0;
 	while (envv[i])
 		i++;
-	env = (t_env *)malloc(sizeof(t_env) * (i + 1));
-	init_cmd(&env);
+	(*cmd)->env = (t_env *)malloc(sizeof(t_env) * (2048 + 1));
+	init_cmd((*cmd)->env);
 	i = 0;
 	while (envv[i])
 	{
-		env[i] = split_env(envv[i], '=');
+		(*cmd)->env[i] = split_env(envv[i], '=');
 		i++;
 	}
-	return (env);
+	(*cmd)->n_env = i;
 }
