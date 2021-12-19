@@ -1,4 +1,5 @@
 .vscode
 minishell
+minishell.dSYM
 a.out
 a.out.dSYM
