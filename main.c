@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:02 by akhalid           #+#    #+#             */
-/*   Updated: 2022/01/05 02:06:25 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/01/06 00:54:51 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,53 +41,74 @@ int count_pipes(char *line)
 	n_pipes = 1;
 	while (line[++i])
 	{
-		skip_all_quotes(line, &i);
+	 	skip_all_quotes(line, &i);
 		if (line[i] == '|')
 			n_pipes += 1;
 	}
 	return (n_pipes);
 }
 
-void parse_command(char **line, int n_cmd)
+void convert_cmd_to_args(char *cmd, int n_cmd)
 {
 	int i;
 	int j;
-	int start;
-	char *str;
+	int arg;
+	int size;
 
-	i = -1;
-	g_all.n_arg = 1;
+	i = 0;
+	while (cmd[i] == ' ')
+		i++;
+	j = i;
+	size = 0;
+	while (cmd[i])
+	{
+		if (cmd[i] == ' ' || !cmd[i + 1])
+			size += 1;
+		i++;
+	}
+	g_all.cmd[n_cmd].n_arg = size;
+	g_all.cmd[n_cmd].args = (char **)malloc(sizeof(char *) * (size + 1));
+	i = j;
+	arg = 0;
+	while (cmd[j])
+	{
+		skip_all_quotes(cmd, &j);
+		if (cmd[j] == ' '|| !cmd[j + 1])
+		{
+			if (!cmd[j + 1])
+				g_all.cmd[n_cmd].args[arg] = ft_substr(cmd, i, j - i + 1);
+			else
+				g_all.cmd[n_cmd].args[arg] = ft_substr(cmd, i, j - i);
+			arg++;
+			i = j + 1;
+		}
+		j++;
+	}
+}
+
+void parse_command(char **line, int n_cmd)
+{
+	char *str;
+	int i;
+	char *cmd;
+	int start;
+
 	str = *line;
-	while (str[++i] && str[i] != '|')
+	i = 0;
+	if (str[i] == '|')
+		i++;
+	start = i;
+	while (str[i])
 	{
 		skip_all_quotes(str, &i);
-		if (str[i] == ' ' && str[i + 1] != '|')
-			g_all.n_arg += 1;
+		if (str[i] == '|')
+			break;
+		i++;
 	}
-	g_all.cmd[n_cmd].args = (char **)malloc(sizeof(char *) * (g_all.n_arg + 1));
-	j = -1;
-	i = 0;
-	while (++j < g_all.n_arg)
-	{
-		start = i;
-		while (str[i] && str[i] != '|')
-		{
-			skip_all_quotes(str, &i);
-			if (str[i] == ' ' || !str[i + 1])
-			{
-				if (!str[i + 1])
-					i++;
-				g_all.cmd[n_cmd].args[j] = ft_substr(str, start, i - start);
-				i++;
-				break;
-			}
-			i++;
-		}
-	}
-	g_all.cmd[n_cmd].args[j] = "\0";
 	*line = &str[i];
+	cmd = ft_substr(str, start , i - start);
+	convert_cmd_to_args(cmd, n_cmd);
 }
-// cmd1 | cmd2
 
 void parse_line(char *line)
 {
@@ -100,11 +121,10 @@ void parse_line(char *line)
 	{
 		printf("command %d\n", i);
 		parse_command(&line, i);
-		int j = 0;
-		while (j < g_all.n_arg)
-			printf("|%s|\n", g_all.cmd[i].args[j++]);
+		int j = -1;
+		while (++j < g_all.cmd[i].n_arg)
+			printf("%s\n", g_all.cmd[i].args[j]);
 	}
-	
 }
 
 int check_line(char *line)

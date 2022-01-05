@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/01/05 01:04:13 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/01/06 00:43:27 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_command
 	char **args;
 	t_redirect *in;
 	t_redirect *out;
+	int n_arg;
 }   t_command;
 
 typedef struct s_env
@@ -45,7 +46,6 @@ typedef struct s_all
 {
 	int n_cmd;
 	t_command *cmd;
-	int n_arg;
 	t_env *env;
 }	t_all;
 
