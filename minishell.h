@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eniddealla <eniddealla@student.42.fr>      +#+  +:+       +#+        */
+/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2021/12/31 04:20:30 by eniddealla       ###   ########.fr       */
+/*   Updated: 2022/01/05 01:04:13 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_redirect
 
 typedef struct s_command
 {
-	char **command;
+	char **args;
 	t_redirect *in;
 	t_redirect *out;
 }   t_command;
@@ -43,12 +43,17 @@ typedef struct s_env
 
 typedef struct s_all
 {
-	int n_env;
+	int n_cmd;
 	t_command *cmd;
+	int n_arg;
 	t_env *env;
 }	t_all;
 
 t_all g_all;
 
+void collect_env(char **envv);
+void parse_line(char *line);
+int ft_strlen(char *s);
+char	*ft_substr(char *s, unsigned int start, size_t len);
 
 #endif
