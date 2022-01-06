@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:02 by akhalid           #+#    #+#             */
-/*   Updated: 2022/01/06 00:54:51 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/01/06 01:06:03 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,31 @@ int count_pipes(char *line)
 	return (n_pipes);
 }
 
-void convert_cmd_to_args(char *cmd, int n_cmd)
+void convert_cmd_to_args(char *cmd, int n_cmd, int i, int j)
+{
+	int arg;
+
+	arg = 0;
+	while (cmd[j])
+	{
+		skip_all_quotes(cmd, &j);
+		if (cmd[j] == ' '|| !cmd[j + 1])
+		{
+			if (!cmd[j + 1])
+				g_all.cmd[n_cmd].args[arg] = ft_substr(cmd, i, j - i + 1);
+			else
+				g_all.cmd[n_cmd].args[arg] = ft_substr(cmd, i, j - i);
+			arg++;
+			i = j + 1;
+		}
+		j++;
+	}
+}
+
+void parse_args(char *cmd, int n_cmd)
 {
 	int i;
 	int j;
-	int arg;
 	int size;
 
 	i = 0;
@@ -69,21 +89,7 @@ void convert_cmd_to_args(char *cmd, int n_cmd)
 	g_all.cmd[n_cmd].n_arg = size;
 	g_all.cmd[n_cmd].args = (char **)malloc(sizeof(char *) * (size + 1));
 	i = j;
-	arg = 0;
-	while (cmd[j])
-	{
-		skip_all_quotes(cmd, &j);
-		if (cmd[j] == ' '|| !cmd[j + 1])
-		{
-			if (!cmd[j + 1])
-				g_all.cmd[n_cmd].args[arg] = ft_substr(cmd, i, j - i + 1);
-			else
-				g_all.cmd[n_cmd].args[arg] = ft_substr(cmd, i, j - i);
-			arg++;
-			i = j + 1;
-		}
-		j++;
-	}
+	convert_cmd_to_args(cmd, n_cmd, i, j);
 }
 
 void parse_command(char **line, int n_cmd)
@@ -107,7 +113,7 @@ void parse_command(char **line, int n_cmd)
 	}
 	*line = &str[i];
 	cmd = ft_substr(str, start , i - start);
-	convert_cmd_to_args(cmd, n_cmd);
+	parse_args(cmd, n_cmd);
 }
 
 void parse_line(char *line)
