@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/01/06 00:43:27 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/01/06 01:22:53 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct s_command
 	char **args;
 	t_redirect *in;
 	t_redirect *out;
+	t_redirect *append;
+	t_redirect *heredoc;
 	int n_arg;
 }   t_command;
 
