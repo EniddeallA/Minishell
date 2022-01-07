@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/01/06 01:22:53 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/01/06 02:05:25 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 
 typedef struct s_redirect
 {
-	int type;
 	char *value;
 	struct s_redirect *next;
 }   t_redirect;
@@ -57,5 +56,8 @@ void collect_env(char **envv);
 void parse_line(char *line);
 int ft_strlen(char *s);
 char	*ft_substr(char *s, unsigned int start, size_t len);
+void skip_all_quotes(char *line, int *index);
+int check_line(char *line);
+int count_pipes(char *line);
 
 #endif

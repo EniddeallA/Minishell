@@ -6,7 +6,7 @@
 #    By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 14:24:17 by akhalid           #+#    #+#              #
-#    Updated: 2022/01/03 15:05:51 by akhalid          ###   ########.fr        #
+#    Updated: 2022/01/06 01:46:48 by akhalid          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ CPPFLAGS	=	"-I/Users/akhalid/homebrew/Cellar/readline/8.1.1/include"
 # CPPFLAGS	=	"-I/usr/local/include"
 SRC_MAIN		=	main.c \
 					collect_env.c \
-					utils.c
+					utils.c \
+					parser.c \
+					parser_utils.c
 
 
 SRCS		=	$(SRC_MAIN)

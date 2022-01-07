@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 01:45:23 by akhalid           #+#    #+#             */
-/*   Updated: 2022/01/06 01:45:31 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/01/07 03:38:40 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,14 @@ void parse_command(char **line, int n_cmd)
 	parse_args(cmd, n_cmd);
 }
 
+// void handle_redirection(int i)
+// {
+// 	int j;
+
+// 	j = -1;
+// 	while (++j < g_all.cmd[i].n_arg)
+// }
+
 void parse_line(char *line)
 {
 	int i;
@@ -95,6 +103,7 @@ void parse_line(char *line)
 		int j = -1;
 		while (++j < g_all.cmd[i].n_arg)
 			printf("%s\n", g_all.cmd[i].args[j]);
-		
+		// handle_redirection(i);
+		// expand_variables();
 	}
 }
