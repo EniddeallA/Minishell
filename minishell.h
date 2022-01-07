@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/01/06 02:05:25 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/01/07 04:39:37 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,12 @@ typedef struct s_redirect
 	struct s_redirect *next;
 }   t_redirect;
 
-
 typedef struct s_command
 {
 	char **args;
-	t_redirect *in;
+	t_redirect *inp;
 	t_redirect *out;
-	t_redirect *append;
-	t_redirect *heredoc;
+	t_redirect *app;
 	int n_arg;
 }   t_command;
 
@@ -59,5 +57,6 @@ char	*ft_substr(char *s, unsigned int start, size_t len);
 void skip_all_quotes(char *line, int *index);
 int check_line(char *line);
 int count_pipes(char *line);
+int	ft_strstr(const char *haystack, const char *needle);
 
 #endif

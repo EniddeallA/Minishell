@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 01:45:23 by akhalid           #+#    #+#             */
-/*   Updated: 2022/01/07 03:38:40 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/01/07 04:48:11 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void parse_command(char **line, int n_cmd)
 	i = 0;
 	if (str[i] == '|')
 		i++;
+	while (str[i] == ' ')
+		i++;
 	start = i;
 	while (str[i])
 	{
@@ -79,6 +81,7 @@ void parse_command(char **line, int n_cmd)
 	*line = &str[i];
 	cmd = ft_substr(str, start , i - start);
 	parse_args(cmd, n_cmd);
+	free(cmd);
 }
 
 // void handle_redirection(int i)
@@ -100,10 +103,9 @@ void parse_line(char *line)
 	{
 		printf("command %d\n", i);
 		parse_command(&line, i);
-		int j = -1;
-		while (++j < g_all.cmd[i].n_arg)
-			printf("%s\n", g_all.cmd[i].args[j]);
-		// handle_redirection(i);
+		// int j = -1;
+		// while (++j < g_all.cmd[i].n_arg)
+		// 	printf("%s\n", g_all.cmd[i].args[j]);
 		// expand_variables();
 	}
 }
