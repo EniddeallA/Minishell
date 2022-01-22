@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eniddealla <eniddealla@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/01/07 04:39:37 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/01/20 15:11:29 by eniddealla       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 typedef struct s_redirect
 {
+	int type;
 	char *value;
 	struct s_redirect *next;
 }   t_redirect;
@@ -53,10 +54,9 @@ t_all g_all;
 void collect_env(char **envv);
 void parse_line(char *line);
 int ft_strlen(char *s);
-char	*ft_substr(char *s, unsigned int start, size_t len);
+char *ft_substr(char *s, unsigned int start, size_t len);
 void skip_all_quotes(char *line, int *index);
 int check_line(char *line);
 int count_pipes(char *line);
-int	ft_strstr(const char *haystack, const char *needle);
 
 #endif

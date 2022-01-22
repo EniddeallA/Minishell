@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eniddealla <eniddealla@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 01:45:23 by akhalid           #+#    #+#             */
-/*   Updated: 2022/01/07 04:48:11 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/01/20 15:23:27 by eniddealla       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void handle_redirections(char *cmd, int n_cmd, int *j)
+{
+	
+}
 
 void convert_cmd_to_args(char *cmd, int n_cmd, int i, int j)
 {
@@ -20,11 +25,13 @@ void convert_cmd_to_args(char *cmd, int n_cmd, int i, int j)
 	while (cmd[j])
 	{
 		skip_all_quotes(cmd, &j);
-		if (cmd[j] == ' '|| !cmd[j + 1])
+		if (cmd[j] == ' ' || !cmd[j + 1]  || cmd[j] == '>' || cmd[j] == '<')
 		{
-			if (!cmd[j + 1])
+			if (cmd[j] == '>' || cmd[j] == '<')
+				handle_redirections(cmd, n_cmd, &j);
+			else if (!cmd[j + 1])
 				g_all.cmd[n_cmd].args[arg] = ft_substr(cmd, i, j - i + 1);
-			else
+			else if (cmd[j] == ' ')
 				g_all.cmd[n_cmd].args[arg] = ft_substr(cmd, i, j - i);
 			arg++;
 			i = j + 1;
@@ -47,8 +54,10 @@ void parse_args(char *cmd, int n_cmd)
 	while (cmd[i])
 	{
 		skip_all_quotes(cmd, &i);
-		if (cmd[i] == ' ' || !cmd[i + 1])
-			size += 1;
+		if (cmd[i] == ' ' || !cmd[i + 1] || cmd[i] == '>' || cmd[i] == '<')
+			if (++size && ((cmd[i] == '>' && cmd[i + 1] == '>') ||
+				(cmd[i] == '<' && cmd[i + 1] == '<')))
+				i++;
 		i++;
 	}
 	g_all.cmd[n_cmd].n_arg = size;
@@ -84,14 +93,6 @@ void parse_command(char **line, int n_cmd)
 	free(cmd);
 }
 
-// void handle_redirection(int i)
-// {
-// 	int j;
-
-// 	j = -1;
-// 	while (++j < g_all.cmd[i].n_arg)
-// }
-
 void parse_line(char *line)
 {
 	int i;
@@ -103,9 +104,9 @@ void parse_line(char *line)
 	{
 		printf("command %d\n", i);
 		parse_command(&line, i);
-		// int j = -1;
-		// while (++j < g_all.cmd[i].n_arg)
-		// 	printf("%s\n", g_all.cmd[i].args[j]);
+		int j = -1;
+		while (++j < g_all.cmd[i].n_arg)
+			printf("%s\n", g_all.cmd[i].args[j]);
 		// expand_variables();
 	}
 }
