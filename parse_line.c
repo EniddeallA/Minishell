@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 13:08:02 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/02 01:44:49 by akhalid          ###   ########.fr       */
+/*   Created: 2022/02/02 01:31:59 by akhalid           #+#    #+#             */
+/*   Updated: 2022/02/02 01:32:13 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int main(int argc, char **argv, char **envv)
+void	parse_line()
 {
-	(void)argv;
-	collect_env(envv);
-	if (argc == 1)
-		while (1)
-		{
-			g_all.line = readline("minishell-v1.0$ ");
-			if (!check_line())
-				exit(0);
-			parse_line();
-			/*
-				**	Execute
-			*/
-		}	
 	
-	return (0);
 }

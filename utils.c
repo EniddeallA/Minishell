@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eniddealla <eniddealla@student.42.fr>      +#+  +:+       +#+        */
+/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:08:52 by akhalid           #+#    #+#             */
-/*   Updated: 2022/01/20 15:01:22 by eniddealla       ###   ########.fr       */
+/*   Updated: 2022/02/02 01:46:52 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,9 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 		return (sub);
 	}
 	return (0);
+}
+
+int check_line()
+{
+	return (1);
 }
