@@ -14,7 +14,7 @@
 
 //void handle_redirections(char *cmd, int n_cmd, int *j)
 //{
-	
+// 	
 //}
 
 void convert_cmd_to_args(char *cmd, int n_cmd, int i, int j)
