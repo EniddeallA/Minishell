@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:08:52 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/02 01:46:52 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/05 23:37:03 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,24 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 		return (sub);
 	}
 	return (0);
+}
+
+int ft_isspace(char c)
+{
+	return (c == '\t' || c == '\n'
+		|| c == '\v' || c == '\f' || c == '\r'
+		|| c == ' ');
+}
+
+void	skip_spaces(t_lexer *lexer)
+{
+	while (ft_isspace(lexer->c))
+		lexer_forward(lexer);
+}
+
+int is_operator(char c)
+{
+	return (c == '|' || c == '>' || c == '<');
 }
 
 int check_line()

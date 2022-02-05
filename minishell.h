@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/05 22:55:08 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/05 23:34:38 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,17 @@ t_all g_all;
 
 typedef struct s_lexer
 {
-	char *content;
+	char *cmd;
 	int i;
 	char c;
+	int length;
 }	t_lexer;
 
 typedef enum s_type
 {
 	WRD,
 	PIPE,
-	IN,
+	INP,
 	OUT,
 	APND,
 	HRDOC
