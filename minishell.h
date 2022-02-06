@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/06 01:12:51 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/06 02:19:57 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_all
 	int n_cmd;
 	t_command *cmd;
 	int lexer_err;
+	int exit_status;
 }	t_all;
 
 t_all g_all;
@@ -84,14 +85,57 @@ typedef struct s_token
 	t_type type;
 }	t_token;
 
-void parser();
-
+/*
+	collect_env.c
+*/
 
 void collect_env(char **envv);
 
+/*
+	parser.c
+*/
 
-int ft_strlen(char *s);
-char *ft_substr(char *s, unsigned int start, size_t len);
+void parser();
+t_token *get_token(t_lexer *lexer);
+
+/*
+	lexer.c
+*/
+
+t_lexer	*init_lexer();
+void	lexer_forward(t_lexer *lexer);
+void	lexer_backward(t_lexer *lexer);
+char *lexer_to_string(t_lexer *lexer);
+
+/*
+	token.c
+*/
+
+t_token *init_token(t_type type, char *val);
+t_token *token_lf(t_lexer *lexer, t_token *token);
+t_token *operator_token(t_lexer *lexer);
+t_token *quoted_wrd_token(t_lexer *lexer, char c);
+t_token *unquoted_wrd_token(t_lexer *lexer);
+
+/*
+	char_token.c
+*/
+
+char *more_wrd_token(t_lexer *lexer, char *val);
+char *char_quoted_wrd_token(t_lexer *lexer, char c);
+char *char_unquoted_wrd_token(t_lexer *lexer);
+
+/*
+	utils.c
+*/
+
+int	ft_strlen(char *s);
+char	*ft_substr(char *s, unsigned int start, size_t len);
+int ft_isspace(char c);
+void	skip_spaces(t_lexer *lexer);
+int is_operator(char c);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strdup(char *s1);
 int check_line();
 
 #endif
