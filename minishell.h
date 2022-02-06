@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/06 02:19:57 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/06 02:33:36 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,15 @@ t_token *unquoted_wrd_token(t_lexer *lexer);
 char *more_wrd_token(t_lexer *lexer, char *val);
 char *char_quoted_wrd_token(t_lexer *lexer, char c);
 char *char_unquoted_wrd_token(t_lexer *lexer);
+
+/*
+	expand.c
+*/
+
+char *expand_exit_status(t_lexer *lexer);
+char *more_expansion(t_lexer *lexer, char *tmp);
+char *unquoted_expansion(t_lexer *lexer);
+char *quoted_expansion(t_lexer *lexer);
 
 /*
 	utils.c
