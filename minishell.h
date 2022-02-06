@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/05 23:34:38 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/06 01:12:51 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_all
 	t_env *env;
 	int n_cmd;
 	t_command *cmd;
+	int lexer_err;
 }	t_all;
 
 t_all g_all;
@@ -83,7 +84,7 @@ typedef struct s_token
 	t_type type;
 }	t_token;
 
-void parse_line();
+void parser();
 
 
 void collect_env(char **envv);

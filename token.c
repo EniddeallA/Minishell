@@ -1,37 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_line.c                                      :+:      :+:    :+:   */
+/*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/02 01:31:59 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/02 01:32:13 by akhalid          ###   ########.fr       */
+/*   Created: 2022/02/06 01:10:55 by akhalid           #+#    #+#             */
+/*   Updated: 2022/02/06 01:52:54 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-t_lexer	*init_lexer()
-{
-	t_lexer *lexer;
-
-	lexer = (t_lexer *)malloc(sizeof(t_lexer));
-	lexer->cmd = g_all.line;
-	lexer->i = 0;
-	lexer->c = g_all.line[0];
-	lexer->length = ft_strlen(lexer->cmd);
-	return (lexer);
-}
-
-void	lexer_forward(t_lexer *lexer)
-{
-	if (lexer->c && lexer->i < lexer->length)
-	{
-		lexer->i += 1;
-		lexer->c = lexer->cmd[lexer->i];
-	}
-}
 
 t_token *init_token(t_type type, char *val)
 {
@@ -41,16 +20,6 @@ t_token *init_token(t_type type, char *val)
 	token->val = val;
 	token->type = type;
 	return (token);
-}
-
-char *lexer_to_string(t_lexer *lexer)
-{
-	char *s;
-
-	s = (char *)malloc(sizeof(char) * 2);
-	s[0] = lexer->c;
-	s[1] = '\0';
-	return (s);
 }
 
 t_token *token_lf(t_lexer *lexer, t_token *token)
@@ -80,45 +49,60 @@ t_token *operator_token(t_lexer *lexer)
 	return (NULL);
 }
 
-t_token *unquoted_wrd_token(t_lexer *lexer)
+t_token *quoted_wrd_token(t_lexer *lexer, char c)
 {
 	char *val;
+	char *s;
 
-	while (!is_operator(lexer->c) && !ft_isspace(lexer->c) && lexer->c)
+	val = ft_strdup("");
+	lexer_forward(lexer);
+	while (lexer->c != c && lexer->c)
 	{
-		if (lexer->c == '$')
-			
-
+		if (lexer->c == '$' && c == '\"')
+		{
+			s = quotes_expand(lexer);
+			lexer_backward(lexer);
+		}
+		else
+			s = lexer_to_string(lexer);
+		val = ft_strjoin(val, s);
+		lexer_forward(lexer);
 	}
+	if (lexer->c != c)
+		g_all.lexer_err = 1;
+	lexer_forward(lexer);
+	if (!is_operator(lexer->c) && !ft_isspace(lexer->c) && lexer->c)
+		val = more_wrd_token(lexer, val);
 	return (init_token(WRD, val));
 }
 
-t_token *get_token(t_lexer *lexer)
+t_token *unquoted_wrd_token(t_lexer *lexer)
 {
-	if (lexer->c && lexer->i < lexer->length)
+	char *val;
+	char *s;
+
+	val = ft_strdup("");
+	while (!is_operator(lexer->c) && !ft_isspace(lexer->c) && lexer->c)
 	{
-		if (ft_isspace(lexer->c))
-			skip_spaces(lexer);
-		if (!is_operator(lexer->c) && lexer->c != '\'' && lexer->c != '\"')
-			return (unquoted_wrd_token(lexer));
-		if (lexer->c == '\"');
-			return (quoted_wrd_token(lexer));
-		if (lexer->c == '\'')
-			return (quoted_wrd_token(lexer));
-		return (operator_token(lexer));
+		if (lexer->c == '\'' || lexer->c == '\"')
+		{
+			val = ft_strjoin(val, char_quoted_wrd_token(lexer,lexer->c));
+			break;
+		}
+		else if (lexer->c == '$')
+		{
+			s = expand_key(lexer);
+			lexer_backward(lexer);
+		}
+		else
+			s = lexer_to_string(lexer);
+		val = ft_strjoin(val, s);
+		lexer_forward(lexer);
 	}
-	return (0);
-}
-
-void	parse_line()
-{
-	t_lexer *lexer;
-    t_token **tokens;
-	t_token *tmp;
-
-    lexer = init_lexer();
-    tokens = (t_token **)malloc(sizeof(t_token *));
-	tokens[0] = NULL;
-	while ((tmp = get_token(lexer)))
-		tokens = realloc_tokens(tokens, tmp);
+	if (val[0])
+	{
+		free(val);
+		return (0);
+	}
+	return (init_token(WRD, val));
 }
