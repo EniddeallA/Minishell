@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:10:57 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/08 00:39:49 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/08 02:10:09 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,68 @@ t_token *get_token(t_lexer *lexer)
 	return (0);
 }
 
+void	cleanup_parser(t_token **tokens, t_lexer *lexer)
+{
+	int i;
+	
+	while (tokens[i])
+	{
+		free(tokens[i]->val);
+		free(tokens[i]);
+		i++;
+	}
+	free(tokens);
+	free(lexer);
+}
+
+void parse_commands(t_token **tokens)
+{
+	t_command *cmd;
+	int i;
+
+	g_all.cmd = init_command();
+	cmd = g_all.cmd;
+	i = 0;
+	while (tokens[i])
+	{
+		token_to_cmd(tokens, cmd, i);
+		if (tokens[i]->type == INP || tokens[i]->type == OUT ||
+			tokens[i]->type == APND || tokens[i]->type == HRDOC)
+			i++;
+		if (tokens[i]->type == PIPE)
+		{
+			cmd->next = init_command();
+			cmd = cmd->next;
+		}
+		i++;
+	}
+}
+
+int syntax_error(t_token **token)
+{
+	
+}
+
 void	parser()
 {
 	t_lexer *lexer;
     t_token **tokens;
 	t_token *tmp;
+	int i;
 
     lexer = init_lexer();
     tokens = (t_token **)malloc(sizeof(t_token *));
 	tokens[0] = NULL;
 	while ((tmp = get_token(lexer)))
+	{
 		tokens = realloc_tokens(tokens, tmp);
-	check_errors(tokens);
-	
+		free(tmp);
+	}
+	if (syntax_error(tokens))
+		write(2, "minishell: syntax error near unexpected token", 47);
+	else if (g_all.lexer_err == 1)
+		write(2, "minishell: quotes left unclosed", 33);
+	else
+		parse_commands(tokens);
+	cleanup_parser(tokens, lexer);
 }

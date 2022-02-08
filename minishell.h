@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/07 22:59:24 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/08 01:23:39 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@
 # include <readline/history.h>
 # include <stdlib.h>
 # include <string.h>
-
-# define INPUT 1
-# define OUTPUT 2
-# define APPEND 3
-# define HEREDOC 4
 
 typedef struct s_redirect
 {
