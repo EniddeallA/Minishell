@@ -31,7 +31,7 @@ char *char_quoted_wrd_token(t_lexer *lexer, char c)
 	{
 		if (lexer->c == '$' && c == '\"')
 		{
-			s = quotes_expand(lexer);
+			s = quoted_expansion(lexer);
 			lexer_backward(lexer);
 		}
 		else
@@ -62,7 +62,7 @@ char *char_unquoted_wrd_token(t_lexer *lexer)
 		}
 		else if (lexer->c == '$')
 		{
-			s = expand_value(lexer);
+			s = quoted_expansion(lexer);
 			lexer_backward(lexer);
 		}
 		else

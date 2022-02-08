@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:10:55 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/08 00:33:37 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/08 03:20:06 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_token *operator_token(t_lexer *lexer)
 	{
 		lexer_forward(lexer);
 		if (lexer->c == '<')
-			return (token_lf(lexer, init_token(HEREDOC, lexer_to_string(lexer))));
+			return (token_lf(lexer, init_token(HRDOC, lexer_to_string(lexer))));
 		return(init_token(INP, lexer_to_string(lexer)));
 	}
 	return (NULL);

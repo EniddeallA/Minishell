@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/08 01:23:39 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/08 03:29:31 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <readline/history.h>
 # include <stdlib.h>
 # include <string.h>
+# include <unistd.h>
 
 typedef struct s_redirect
 {
@@ -48,7 +49,6 @@ typedef struct s_all
 {
 	char *line;
 	t_env *env;
-	int n_cmd;
 	t_command *cmd;
 	int lexer_err;
 	int exit_status;
@@ -92,6 +92,11 @@ void	collect_env(char **envv);
 
 void	parser();
 t_token *get_token(t_lexer *lexer);
+t_token	**realloc_tokens(t_token **tokens, t_token *tmp);
+void	cleanup_parser(t_token **tokens, t_lexer *lexer);
+void parse_commands(t_token **tokens);
+int syntax_error(t_token **token);
+
 
 /*
 	lexer.c
@@ -140,6 +145,21 @@ char *more_expansion(t_lexer *lexer, char *tmp);
 
 
 /*
+	parse_command.c
+*/
+
+void 	token_to_cmd(t_token **tokens, t_command *cmd, int i);
+char **realloc_args(char **args, char *val);
+t_command	*init_command();
+
+/*
+	parse_redirection.c
+*/
+
+void 	create_redirection(t_redirect *red, char *val, t_type type);
+t_redirect	*init_redirection(char *val, t_type type);
+
+/*
 	utils.c
 */
 
@@ -151,6 +171,7 @@ int 	is_operator(char c);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(char *s1);
 int 	check_line();
-int	ft_strcmp(char *s1, char *s2);
+int		ft_strcmp(char *s1, char *s2);
+char	*ft_itoa(int n);
 
 #endif

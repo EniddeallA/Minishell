@@ -59,8 +59,10 @@ void 	token_to_cmd(t_token **tokens, t_command *cmd, int i)
 	}
 	else if (tokens[i]->type == INP || tokens[i]->type == OUT ||
 		tokens[i]->type == APND || tokens[i]->type == HRDOC)
+	{
 		if (!cmd->red)
 			cmd->red = init_redirection(tokens[i + 1]->val, tokens[i]->type);
 		else
 			create_redirection(cmd->red, tokens[i + 1]->val, tokens[i]->type);
+	}
 }

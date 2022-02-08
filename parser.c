@@ -6,13 +6,13 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:10:57 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/08 02:10:09 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/08 03:30:55 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_token	*realloc_tokens(t_token **tokens, t_token *tmp)
+t_token	**realloc_tokens(t_token **tokens, t_token *tmp)
 {
 	int i;
 	t_token **new;
@@ -42,7 +42,7 @@ t_token *get_token(t_lexer *lexer)
 			skip_spaces(lexer);
 		if (!is_operator(lexer->c) && lexer->c != '\'' && lexer->c != '\"')
 			return (unquoted_wrd_token(lexer));
-		if (lexer->c == '\"');
+		if (lexer->c == '\"')
 			return (quoted_wrd_token(lexer, lexer->c));
 		if (lexer->c == '\'')
 			return (quoted_wrd_token(lexer, lexer->c));
@@ -90,7 +90,7 @@ void parse_commands(t_token **tokens)
 
 int syntax_error(t_token **token)
 {
-	
+	return (0);
 }
 
 void	parser()
@@ -109,9 +109,9 @@ void	parser()
 		free(tmp);
 	}
 	if (syntax_error(tokens))
-		write(2, "minishell: syntax error near unexpected token", 47);
+		write(2, "minishell: syntax error near unexpected token\n", 47);
 	else if (g_all.lexer_err == 1)
-		write(2, "minishell: quotes left unclosed", 33);
+		write(2, "minishell: quotes left unclosed\n", 33);
 	else
 		parse_commands(tokens);
 	cleanup_parser(tokens, lexer);

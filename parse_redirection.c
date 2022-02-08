@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 01:58:05 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/08 02:03:07 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/08 03:25:52 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_redirect	*init_redirection(char *val, t_type type)
 	red = (t_redirect *)malloc(sizeof(t_redirect));
 	red->file = ft_strdup(val);
 	red->type = type;
-	red->type = NULL;
 	return (red);
 }
 
