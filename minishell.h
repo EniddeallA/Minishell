@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/07 20:30:34 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/07 22:59:24 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,16 @@ char *unquoted_expansion(t_lexer *lexer);
 char *quoted_expansion(t_lexer *lexer);
 
 /*
+	expand.c
+*/
+
+char *expand_exit_status(t_lexer *lexer);
+char *get_env_value(char *key);
+char	*expand_key(char *key);
+char *more_expansion(t_lexer *lexer, char *tmp);
+
+
+/*
 	utils.c
 */
 
@@ -146,5 +156,6 @@ int 	is_operator(char c);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(char *s1);
 int 	check_line();
+int	ft_strcmp(char *s1, char *s2);
 
 #endif

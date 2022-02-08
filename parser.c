@@ -6,11 +6,33 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:10:57 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/06 01:31:26 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/08 00:39:49 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+t_token	*realloc_tokens(t_token **tokens, t_token *tmp)
+{
+	int i;
+	t_token **new;
+
+	i = 0;
+	while (tokens[i])
+		i++;
+	new = (t_token **)malloc(sizeof(t_token *) * (i + 2));
+	i = 0;
+	while (tokens[i])
+	{
+		new[i] = (t_token *)malloc(sizeof(t_token));
+		new[i] = tokens[i];
+		i++;
+	}
+	new[i++] = tmp;
+	new[i] = NULL;
+	free(tokens);
+	return (new);
+}
 
 t_token *get_token(t_lexer *lexer)
 {
@@ -40,4 +62,6 @@ void	parser()
 	tokens[0] = NULL;
 	while ((tmp = get_token(lexer)))
 		tokens = realloc_tokens(tokens, tmp);
+	check_errors(tokens);
+	
 }
