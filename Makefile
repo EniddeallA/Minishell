@@ -6,13 +6,13 @@
 #    By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 14:24:17 by akhalid           #+#    #+#              #
-#    Updated: 2022/02/08 03:19:31 by akhalid          ###   ########.fr        #
+#    Updated: 2022/02/10 15:15:21 by akhalid          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	minishell
 CC			=	gcc
-CFLAG		=	-Wall -Wextra -Werror -g
+CFLAG		=	 -g
 LRL			=	"-lreadline"
 LDFLAGS		=	"-L/Users/akhalid/homebrew/Cellar/readline/8.1.1/lib"
 CPPFLAGS	=	"-I/Users/akhalid/homebrew/Cellar/readline/8.1.1/include"
@@ -26,7 +26,7 @@ SRCS		=	$(SRC_MAIN)
 all: $(NAME)
 
 $(NAME): $(SRCS)
-	@gcc $(SRCS) $(LDFLAGS) $(CPPFLAGS)  $(LRL) -o $(NAME) -g
+	@gcc $(CFLAG) $(SRCS) $(LDFLAGS) $(CPPFLAGS)  $(LRL) -o $(NAME) -g
 	
 clean:
 	@rm -rf *.o

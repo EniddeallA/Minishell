@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:10:57 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/08 03:30:55 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/10 15:00:15 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,22 @@ t_token	**realloc_tokens(t_token **tokens, t_token *tmp)
 	t_token **new;
 
 	i = 0;
-	while (tokens[i])
-		i++;
+	if (tokens)
+		while (tokens[i])
+			i++;
 	new = (t_token **)malloc(sizeof(t_token *) * (i + 2));
 	i = 0;
-	while (tokens[i])
-	{
-		new[i] = (t_token *)malloc(sizeof(t_token));
-		new[i] = tokens[i];
-		i++;
-	}
+	if (tokens)
+		while (tokens[i])
+		{
+			new[i] = (t_token *)malloc(sizeof(t_token));
+			new[i]->val = ft_strdup(tokens[i]->val);
+			new[i]->type = tokens[i]->type;
+			i++;
+		}
 	new[i++] = tmp;
 	new[i] = NULL;
-	free(tokens);
+	free_tokens(tokens);
 	return (new);
 }
 
@@ -51,18 +54,21 @@ t_token *get_token(t_lexer *lexer)
 	return (0);
 }
 
-void	cleanup_parser(t_token **tokens, t_lexer *lexer)
+void	free_tokens(t_token **tokens)
 {
 	int i;
 	
-	while (tokens[i])
+	i = 0;
+	if (tokens)
 	{
-		free(tokens[i]->val);
-		free(tokens[i]);
-		i++;
+		while (tokens[i])
+		{
+			free(tokens[i]->val);
+			free(tokens[i]);
+			i++;
+		}
+		free(tokens);
 	}
-	free(tokens);
-	free(lexer);
 }
 
 void parse_commands(t_token **tokens)
@@ -98,21 +104,18 @@ void	parser()
 	t_lexer *lexer;
     t_token **tokens;
 	t_token *tmp;
-	int i;
 
     lexer = init_lexer();
     tokens = (t_token **)malloc(sizeof(t_token *));
 	tokens[0] = NULL;
 	while ((tmp = get_token(lexer)))
-	{
 		tokens = realloc_tokens(tokens, tmp);
-		free(tmp);
-	}
 	if (syntax_error(tokens))
 		write(2, "minishell: syntax error near unexpected token\n", 47);
 	else if (g_all.lexer_err == 1)
 		write(2, "minishell: quotes left unclosed\n", 33);
 	else
 		parse_commands(tokens);
-	cleanup_parser(tokens, lexer);
+	free_tokens(tokens);
+	free(lexer);
 }

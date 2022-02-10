@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/08 03:29:31 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/10 14:49:00 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	collect_env(char **envv);
 void	parser();
 t_token *get_token(t_lexer *lexer);
 t_token	**realloc_tokens(t_token **tokens, t_token *tmp);
-void	cleanup_parser(t_token **tokens, t_lexer *lexer);
+void	free_tokens(t_token **tokens);
 void parse_commands(t_token **tokens);
 int syntax_error(t_token **token);
 
@@ -151,6 +151,7 @@ char *more_expansion(t_lexer *lexer, char *tmp);
 void 	token_to_cmd(t_token **tokens, t_command *cmd, int i);
 char **realloc_args(char **args, char *val);
 t_command	*init_command();
+void	free_args(char **args);
 
 /*
 	parse_redirection.c

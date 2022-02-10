@@ -25,6 +25,19 @@ t_command	*init_command()
 	return (cmd);
 }
 
+void	free_args(char **args)
+{
+	int i;
+	
+	i = 0;
+	if (args)
+	{
+		while (args[i])
+			free(args[i++]);
+		free(args);
+	}
+}
+
 char **realloc_args(char **args, char *val)
 {
 	int i;
@@ -33,19 +46,21 @@ char **realloc_args(char **args, char *val)
 	i = 0;
 	if (val[0] == ' ' && val[1] == '\0')
 		return (args);
-	while (args[i])
-		i++;
-	new_args = (char **)malloc(sizeof(char *) * (i + 1));
+	if (args)
+		while (args[i])
+			i++;
+	new_args = (char **)malloc(sizeof(char *) * (i + 2));
 	i = 0;
-	if (args[i])
+	if (args)
 		while (args[i])
 		{
-			new_args[i] = args[i];
+			new_args[i] = ft_strdup(args[i]);
 			i++;
 		}
 	new_args[i++] = ft_strdup(val);
 	new_args[i] = NULL;
-	free(args);
+	i = 0;
+	free_args(args);
 	return (new_args);
 }
 
