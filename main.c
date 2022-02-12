@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:02 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/10 16:05:09 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/12 17:03:40 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,10 @@ int main(int argc, char **argv, char **envv)
 			g_all.line = readline("minishell-v1.0$ ");
 			if (!check_line())
 				exit(0);
-			parser();
-			int i = 0;
-			while (g_all.cmd)
-			{
-				while (g_all.cmd->args[i])
-				{
-					printf("%s\n", g_all.cmd->args[i]);
-					i++;
-				}
-				g_all.cmd = g_all.cmd->next;
-			}
-			/*
-				**	Execute
-			*/
+			add_history(g_all.line);
+			parse();
+			if (g_all.cmd && !g_all.lexer_err)
+				execute(g_all.cmd);
 		}	
 	
 	return (0);

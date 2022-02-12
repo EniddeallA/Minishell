@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/10 14:49:00 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/12 17:14:51 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	collect_env(char **envv);
 	parser.c
 */
 
-void	parser();
+void	parse();
 t_token *get_token(t_lexer *lexer);
 t_token	**realloc_tokens(t_token **tokens, t_token *tmp);
 void	free_tokens(t_token **tokens);
@@ -174,5 +174,14 @@ char	*ft_strdup(char *s1);
 int 	check_line();
 int		ft_strcmp(char *s1, char *s2);
 char	*ft_itoa(int n);
+
+/*
+	execute.c
+*/
+
+void	execute(t_command *cmd);
+void	complex_cmd(t_command *cmd);
+void	simple_cmd(t_command *cmd);
+int		is_builin(char *cmd);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:10:57 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/10 15:00:15 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/12 17:12:27 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int syntax_error(t_token **token)
 	return (0);
 }
 
-void	parser()
+void	parse()
 {
 	t_lexer *lexer;
     t_token **tokens;
