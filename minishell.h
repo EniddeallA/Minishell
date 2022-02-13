@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <signal.h>
 
 typedef struct s_redirect
 {
@@ -174,6 +175,17 @@ char	*ft_strdup(char *s1);
 int 	check_line();
 int		ft_strcmp(char *s1, char *s2);
 char	*ft_itoa(int n);
+
+typedef struct s_pipe
+{
+	int pid;
+	int pipe[2];
+	int inp;
+	int outp;
+	int state;
+	int last_state;
+	int last_pid;
+}	t_pipe;
 
 /*
 	execute.c
