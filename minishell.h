@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/12 17:14:51 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/13 22:32:52 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,11 @@ typedef struct s_pipe
 void	execute(t_command *cmd);
 void	complex_cmd(t_command *cmd);
 void	simple_cmd(t_command *cmd);
+
+/*
+	execution_utils.c
+*/
+
 int		is_builin(char *cmd);
 
 #endif

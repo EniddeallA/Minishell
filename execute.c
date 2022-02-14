@@ -6,29 +6,34 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 17:03:54 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/12 17:14:06 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/14 18:14:46 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int is_builin(char *cmd)
+void execute_builtins(t_command *cmd)
 {
-	if (!ft_strcmp(cmd, "echo") || !ft_strcmp(cmd, "cd") ||
-	!ft_strcmp(cmd, "pwd") || !ft_strcmp(cmd, "export") ||
-	!ft_strcmp(cmd, "unset") || !ft_strcmp(cmd, "env") ||
-	!ft_strcmp(cmd, "exit"))
-		return (1);
-	return (0);
+	
 }
 
 /* 
-	execute a simple built-in command 
+	execute a simple built-in command s
 */
 
 void simple_cmd(t_command *cmd)
 {
+	int inp;
+	int outp;
 
+	inp = dup(0);
+	outp = dup(1);
+	redirect(cmd);
+	execute_builtins(cmd);
+	dup2(inp, 0);
+	dup2(outp, 1);
+	close(inp);
+	close(outp);
 }
 
 void redirect(t_command *cmd)
@@ -50,7 +55,7 @@ void single_cmd(t_command *cmd, t_pipe *p)
 		redirect(cmd);
 		execute_cmd(cmd);
 	}
-	close(p->inps);
+	close(p->inp);
 	close(p->outp);
 }
 
@@ -111,11 +116,11 @@ void complex_cmd(t_command *cmd)
 	i = 0;
 	while (cmdd)
 	{
-		if (!i++ && !current->next)
+		if (!i++ && !cmdd->next)
 			single_cmd(cmdd, &p);
 		else
 		{
-			if (current->next)
+			if (cmdd->next)
 				multiple_cmds(cmdd, &p);
 			else
 				last_cmd(cmdd, &p);
@@ -126,6 +131,7 @@ void complex_cmd(t_command *cmd)
 
 void execute(t_command *cmd)
 {
+	
 	if (!cmd->next && is_builtin(cmd->cmd))
 		simple_cmd(cmd);
 	else
