@@ -6,13 +6,21 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 22:32:10 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/13 22:32:29 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/16 02:26:05 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int is_builin(char *cmd)
+void cntl_c(int sig)
+{
+	write(1, "\n", 1);
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
+}
+
+int is_builtin(char *cmd)
 {
 	if (!ft_strcmp(cmd, "echo") || !ft_strcmp(cmd, "cd") ||
 	!ft_strcmp(cmd, "pwd") || !ft_strcmp(cmd, "export") ||

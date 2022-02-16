@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 17:03:54 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/14 18:14:46 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/16 06:01:20 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@ void execute_builtins(t_command *cmd)
 /* 
 	execute a simple built-in command s
 */
+
+void redirect(t_command *cmd)
+{
+
+}
+
+void execute_cmd(t_command *cmd)
+{
+	exit(0);
+}
 
 void simple_cmd(t_command *cmd)
 {
@@ -36,15 +46,6 @@ void simple_cmd(t_command *cmd)
 	close(outp);
 }
 
-void redirect(t_command *cmd)
-{
-
-}
-
-void execute_cmd(t_command *cmd)
-{
-
-}
 
 void single_cmd(t_command *cmd, t_pipe *p)
 {
@@ -127,11 +128,11 @@ void complex_cmd(t_command *cmd)
 		}
 		cmdd = cmdd->next;
 	}
+	// wait_signals(&p);
 }
 
 void execute(t_command *cmd)
 {
-	
 	if (!cmd->next && is_builtin(cmd->cmd))
 		simple_cmd(cmd);
 	else

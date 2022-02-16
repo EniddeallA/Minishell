@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:08:52 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/12 17:08:25 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/16 02:35:28 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,11 @@ char	*ft_strdup(char *s1)
 
 int check_line()
 {
+	if (g_all.line == NULL)
+	{
+		write(1, "exit\n", 6);
+		return (0);
+	}
 	return (1);
 }
 
@@ -176,14 +181,4 @@ char	*ft_itoa(int n)
 		number = n;
 	x = ft_array(x, number, len);
 	return (x);
-}
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
-		i++;
-	return (s1[i] - s2[i]);
 }
