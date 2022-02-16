@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:43:42 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/08 03:21:07 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/16 22:50:15 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char *unquoted_expansion(t_lexer *lexer)
 	char *val;
 
 	lexer_forward(lexer);
-	if (lexer->c == '$' || lexer->c == '\"' || lexer->c == ' ' || lexer->c )
+	if (lexer->c == '$' || lexer->c == '\"' || lexer->c == ' ' || !lexer->c )
 		return (ft_strdup("$"));
 	if (lexer->c == '?')
 		return (expand_exit_status(lexer));
@@ -47,7 +47,7 @@ char *quoted_expansion(t_lexer *lexer)
 	if (lexer->c == '?')
 		return (expand_exit_status(lexer));
 	key = ft_strdup("");
-	while (lexer->c != '\"' && lexer->c != ' ' && lexer->c != '$' && lexer->c)
+	while (lexer->c != '\"' && lexer->c != '\'' && lexer->c != ' ' && lexer->c != '$' && lexer->c)
 	{
 		val = lexer_to_string(lexer);
 		key = ft_strjoin(key, val);
