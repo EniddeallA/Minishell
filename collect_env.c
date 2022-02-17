@@ -6,13 +6,13 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 15:04:58 by akhalid           #+#    #+#             */
-/*   Updated: 2022/01/03 15:05:27 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/17 03:57:40 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char *get_key(char *str)
+char *add_key(char *str)
 {
 	int i;
 	char *key;
@@ -32,7 +32,7 @@ char *get_key(char *str)
 	return (key);
 }
 
-char *get_value(char *str)
+char *add_value(char *str)
 {
 	int i;
 	char *value;
@@ -60,8 +60,8 @@ t_env *create_node(char *envv)
 	t_env *node;
 	
 	node = (t_env *)malloc(sizeof(t_env));
-	node->key = get_key(envv);
-	node->value = get_value(envv);
+	node->key = add_key(envv);
+	node->value = add_value(envv);
 	node->next = NULL;
 	return (node);
 }

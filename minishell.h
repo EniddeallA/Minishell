@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/16 02:25:59 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/17 03:56:26 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,5 +208,14 @@ void	execute_builtins(t_command *cmd);
 
 void	cntl_c(int sig);
 int		is_builtin(char *cmd);
+
+/*
+	env_utils.c
+*/
+
+void	add_envv(char *key, char *value);
+void	delete_envv(char *key);
+void	replace_value(char *key, char *new_value);
+char	*get_value(char *key);
 
 #endif
