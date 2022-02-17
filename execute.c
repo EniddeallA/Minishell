@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 17:03:54 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/17 05:56:38 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/17 07:06:47 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ void execute_builtins(t_command *cmd)
 	if (!ft_strcmp(cmd->cmd, "echo"))
 		ft_echo(cmd->args);
 	else if (!ft_strcmp(cmd->cmd, "pwd"))
-		ft_pwd(cmd->args);
+		ft_pwd();
 	else if (!ft_strcmp(cmd->cmd, "env"))
 		ft_env();
 	else if (!ft_strcmp(cmd->cmd, "exit"))
 		ft_exit(cmd->args);
 }
 
-/* 
+/* 	
 	execute a simple built-in command s
 */
 

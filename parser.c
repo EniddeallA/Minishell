@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:10:57 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/16 22:34:48 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/17 07:09:20 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ void parse_commands(t_token **tokens)
 
 int syntax_error(t_token **token)
 {
+	if (!token)
+		return (1);
 	return (0);
 }
 
