@@ -6,7 +6,7 @@
 /*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 03:01:47 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/17 03:57:38 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2022/02/17 05:24:15 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int	check_str(char *str)
 		i++;
     if (!str[i])
         return (1);
-	while (str[i++])
-		if (!ft_isdigit(str[i]))
+	while (str[i])
+		if (!ft_isdigit(str[i++]))
 			return (1);
 	return (0);
 }
@@ -71,7 +71,10 @@ int ft_exit(char **args)
         if (args[2])
             printf("minishell: exit: too many arguments\n");
         else if (!check_str(args[1]))
+		{
+        	printf("exit\n");
             exit(ft_atoi(args[1]));
+		}
         else
         {
             printf("exit\nminishell: exit: %s: numeric argument required\n",args[1]);

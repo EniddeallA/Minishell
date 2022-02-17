@@ -6,7 +6,7 @@
 /*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 17:03:54 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/17 03:07:24 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2022/02/17 05:26:30 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@ void execute_builtins(t_command *cmd)
 /* 
 	execute a simple built-in command s
 */
+
+void redirect(t_command *cmd)
+{
+	
+}
+
+void execute_cmd(t_command *cmd)
+{
+	exit(0);
+}
 
 void simple_cmd(t_command *cmd)
 {
@@ -37,15 +47,6 @@ void simple_cmd(t_command *cmd)
 	close(outp);
 }
 
-void redirect(t_command *cmd)
-{
-
-}
-
-void execute_cmd(t_command *cmd)
-{
-
-}
 
 void single_cmd(t_command *cmd, t_pipe *p)
 {
@@ -128,19 +129,15 @@ void complex_cmd(t_command *cmd)
 		}
 		cmdd = cmdd->next;
 	}
+	// wait_signals(&p);
 }
 
 void execute(t_command *cmd)
 {
-	int i = 0;
-	// if (!cmd->next && is_builtin(cmd->cmd))
-	// printf("command name ==== %s\n", cmd->cmd);
-
 	// ft_echo(cmd->args);
-	// ft_env();
+	// ft_exit(cmd->args);
 	// ft_pwd();
-	ft_exit(cmd->args);
-	if (!cmd->next)
+	if (!cmd->next && is_builtin(cmd->cmd))
 		simple_cmd(cmd);
 	else
 		complex_cmd(cmd);

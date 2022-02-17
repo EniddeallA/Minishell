@@ -6,7 +6,7 @@
 /*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/17 03:07:01 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2022/02/17 05:15:04 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,7 @@ char	*ft_strdup(char *s1);
 int 	check_line();
 int		ft_strcmp(char *s1, char *s2);
 char	*ft_itoa(int n);
+int		ft_strcmp(char *s1, char *s2);
 
 typedef struct s_pipe
 {
@@ -194,12 +195,28 @@ typedef struct s_pipe
 void	execute(t_command *cmd);
 void	complex_cmd(t_command *cmd);
 void	simple_cmd(t_command *cmd);
+void	single_cmd(t_command *cmd, t_pipe *p);
+void	multiple_cmds(t_command *cmd, t_pipe *p);
+void	last_cmd(t_command *cmd, t_pipe *p);
+void	execute_cmd(t_command *cmd);
+void	redirect(t_command *cmd);
+void	execute_builtins(t_command *cmd);
 
 /*
 	execution_utils.c
 */
 
-int		is_builin(char *cmd);
+void	cntl_c(int sig);
+int		is_builtin(char *cmd);
+
+/*
+	env_utils.c
+*/
+
+void	add_envv(char *key, char *value);
+void	delete_envv(char *key);
+void	replace_value(char *key, char *new_value);
+char	*get_value(char *key);
 
 //------------//
 
