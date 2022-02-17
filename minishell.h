@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/17 05:15:04 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2022/02/17 05:52:44 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,11 +218,13 @@ void	delete_envv(char *key);
 void	replace_value(char *key, char *new_value);
 char	*get_value(char *key);
 
-//------------//
+/*
+	builtins
+*/
 
-int ft_echo(char **args);
-int	ft_env();
-int     ft_pwd();
-int ft_exit(char **args);
+void	ft_echo(char **args);
+void	ft_env();
+void	ft_pwd();
+void	ft_exit(char **args);
 
 #endif

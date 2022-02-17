@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 03:01:47 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/17 05:24:15 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2022/02/17 05:52:01 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	check_str(char *str)
 	return (0);
 }
 
-int ft_exit(char **args)
+void ft_exit(char **args)
 {
     if (args[1])
     {
@@ -86,5 +86,4 @@ int ft_exit(char **args)
         printf("exit\n");
         exit(0);
     }
-    return(0);
 }

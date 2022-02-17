@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 02:10:39 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/17 02:23:19 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2022/02/17 05:51:14 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int    ft_env()
+void    ft_env()
 {
     t_env *tmp;
 
@@ -22,5 +22,4 @@ int    ft_env()
         printf("%s=%s\n", tmp->key,tmp->value);
         tmp = tmp->next;
     }
-    return(0);
 }

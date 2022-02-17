@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 22:41:56 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/17 02:03:18 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2022/02/17 05:52:21 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	ft_putstr_fd(char *s, int fd)
 	}
 }
 
-int ft_echo(char **args)
+void    ft_echo(char **args)
 {
     int i = 1;
     int option;
@@ -92,5 +92,4 @@ int ft_echo(char **args)
     }
     if (n_args(args) == 1 || option == 0)
 		write(1, "\n", 1);
-    return(0);
 }

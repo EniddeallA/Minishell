@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 17:03:54 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/17 05:26:30 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2022/02/17 05:56:38 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,14 @@
 
 void execute_builtins(t_command *cmd)
 {
-	
+	if (!ft_strcmp(cmd->cmd, "echo"))
+		ft_echo(cmd->args);
+	else if (!ft_strcmp(cmd->cmd, "pwd"))
+		ft_pwd(cmd->args);
+	else if (!ft_strcmp(cmd->cmd, "env"))
+		ft_env();
+	else if (!ft_strcmp(cmd->cmd, "exit"))
+		ft_exit(cmd->args);
 }
 
 /* 
@@ -129,14 +136,10 @@ void complex_cmd(t_command *cmd)
 		}
 		cmdd = cmdd->next;
 	}
-	// wait_signals(&p);
 }
 
 void execute(t_command *cmd)
 {
-	// ft_echo(cmd->args);
-	// ft_exit(cmd->args);
-	// ft_pwd();
 	if (!cmd->next && is_builtin(cmd->cmd))
 		simple_cmd(cmd);
 	else

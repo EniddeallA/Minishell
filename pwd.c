@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 02:40:13 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/17 02:51:01 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2022/02/17 05:51:26 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int     ft_pwd()
+void     ft_pwd()
 {
     char *buff;
 
@@ -22,5 +22,4 @@ int     ft_pwd()
         printf("%s\n", buff);
         free(buff);
     }
-    return (0);
 }

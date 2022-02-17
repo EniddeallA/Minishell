@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:02 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/17 05:18:27 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2022/02/17 05:55:28 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,6 @@ int main(int argc, char **argv, char **envv)
 				continue;
 			add_history(g_all.line);
 			parse();
-			// int i;
-			// while (g_all.cmd)
-			// {
-			// 	i = 0;
-			// 	while (g_all.cmd->args[i])
-			// 	{
-			// 		printf("%s ", g_all.cmd->args[i]);
-			// 		i++;
-			// 	}
-			// 	printf("\n");
-			// 	g_all.cmd = g_all.cmd->next;
-			// }
 			if (g_all.cmd && !g_all.lexer_err)
 				execute(g_all.cmd);
 		}		
