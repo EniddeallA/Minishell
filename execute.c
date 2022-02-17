@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 17:03:54 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/14 18:14:46 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/17 03:07:24 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ void simple_cmd(t_command *cmd)
 	int inp;
 	int outp;
 
+	
 	inp = dup(0);
 	outp = dup(1);
-	redirect(cmd);
+	// redirect(cmd);
 	execute_builtins(cmd);
 	dup2(inp, 0);
 	dup2(outp, 1);
@@ -131,9 +132,16 @@ void complex_cmd(t_command *cmd)
 
 void execute(t_command *cmd)
 {
-	
-	if (!cmd->next && is_builtin(cmd->cmd))
+	int i = 0;
+	// if (!cmd->next && is_builtin(cmd->cmd))
+	// printf("command name ==== %s\n", cmd->cmd);
+
+	// ft_echo(cmd->args);
+	// ft_env();
+	// ft_pwd();
+	ft_exit(cmd->args);
+	if (!cmd->next)
 		simple_cmd(cmd);
 	else
 		complex_cmd(cmd);
-}	
+}

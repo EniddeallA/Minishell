@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 13:08:02 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/16 22:33:32 by aelkhalo         ###   ########.fr       */
+/*   Created: 2022/02/17 02:10:39 by aelkhalo          #+#    #+#             */
+/*   Updated: 2022/02/17 02:23:19 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int main(int argc, char **argv, char **envv)
+int    ft_env()
 {
-	(void)argv;
-	collect_env(envv);
-	if (argc == 1)
-		while (1)
-		{
-			g_all.line = readline("minishell-v1.0$ ");
-			if (!check_line())
-				exit(0);
-			add_history(g_all.line);
-			parse();
-			if (g_all.cmd && !g_all.lexer_err)
-				execute(g_all.cmd);
-		}	
-	
-	return (0);
+    t_env *tmp;
+
+    tmp = g_all.env;
+    while (tmp != NULL)
+    {
+        printf("%s=%s\n", tmp->key,tmp->value);
+        tmp = tmp->next;
+    }
+    return(0);
 }

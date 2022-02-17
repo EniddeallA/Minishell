@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/13 22:32:52 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/17 03:07:01 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,5 +200,12 @@ void	simple_cmd(t_command *cmd);
 */
 
 int		is_builin(char *cmd);
+
+//------------//
+
+int ft_echo(char **args);
+int	ft_env();
+int     ft_pwd();
+int ft_exit(char **args);
 
 #endif
