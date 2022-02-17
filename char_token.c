@@ -70,7 +70,7 @@ char *char_unquoted_wrd_token(t_lexer *lexer)
 		val = ft_strjoin(val, s);
 		lexer_forward(lexer);
 	}
-	if (val[0])
+	if (!val[0])
 	{
 		free(val);
 		return (0);

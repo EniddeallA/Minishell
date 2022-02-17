@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:08:52 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/16 02:35:28 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/17 01:55:50 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ int ft_strlen(char *s)
 	int i;
 
 	i = 0;
-	while (s[i])
-		i++;
+	if (s)
+		while (s[i])
+			i++;
 	return (i);	
 }
 
