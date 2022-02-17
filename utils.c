@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:08:52 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/17 07:13:01 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/17 08:59:06 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,4 +182,16 @@ char	*ft_itoa(int n)
 		number = n;
 	x = ft_array(x, number, len);
 	return (x);
+}
+
+int is_all_spaces(char *s)
+{
+	int i;
+
+	i = 0;
+	while (ft_isspace(s[i]) && s[i])
+		i++;
+	if (!s[i])
+		return (1);
+	return (0);
 }

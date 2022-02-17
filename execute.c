@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 17:03:54 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/17 07:06:47 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/17 09:02:56 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,19 @@ void redirect(t_command *cmd)
 	
 }
 
+void	execute_nonbuiltins(t_command *cmd)
+{
+	
+}
+
 void execute_cmd(t_command *cmd)
 {
+	if (!cmd)
+		exit(0);
+	if (is_builtin(cmd->cmd))
+		execute_builtins(cmd);
+	else
+		execute_nonbuiltins(cmd);
 	exit(0);
 }
 

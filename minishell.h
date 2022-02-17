@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/17 05:52:44 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/17 11:37:11 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,18 @@ typedef struct s_token
 	char *val;
 	t_type type;
 }	t_token;
+
+typedef struct s_pipe
+{
+	int pid;
+	int pipe[2];
+	int inp;
+	int outp;
+	int state;
+	int last_state;
+	int last_pid;
+}	t_pipe;
+
 
 /*
 	collect_env.c
@@ -176,17 +188,7 @@ int 	check_line();
 int		ft_strcmp(char *s1, char *s2);
 char	*ft_itoa(int n);
 int		ft_strcmp(char *s1, char *s2);
-
-typedef struct s_pipe
-{
-	int pid;
-	int pipe[2];
-	int inp;
-	int outp;
-	int state;
-	int last_state;
-	int last_pid;
-}	t_pipe;
+int is_all_spaces(char *s);
 
 /*
 	execute.c

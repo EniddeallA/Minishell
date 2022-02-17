@@ -6,23 +6,11 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:02 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/17 07:16:09 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/17 08:58:52 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int is_all_spaces(char *s)
-{
-	int i;
-
-	i = 0;
-	while (ft_isspace(s[i]) && s[i])
-		i++;
-	if (!s[i])
-		return (1);
-	return (0);
-}
 
 int main(int argc, char **argv, char **envv)
 {
