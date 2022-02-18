@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 03:32:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/17 04:07:46 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/18 12:03:40 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,21 @@ char	*get_value(char *key)
 		{
 			if (!ft_strcmp(env->key, key))
 				return (env->value);
+			env = env->next;
+		}
+	return (0);
+}
+
+int	key_exist(char *key)
+{
+	t_env *env;
+
+	env = g_all.env;
+	if (env)
+		while (env)
+		{
+			if (!ft_strcmp(env->key, key))
+				return (1);
 			env = env->next;
 		}
 	return (0);
@@ -46,6 +61,45 @@ void	replace_value(char *key, char *new_value)
 		}
 }
 
+// void	delete_envv(char *key)
+// {
+// 	t_env *env;
+// 	t_env *temp;
+	
+// 	printf("the key -- -- > %s\n", key);
+// 	env = g_all.env;
+// 	if (env)
+// 	{
+// 		printf("ajosdjaosdj\n");
+// 		if (!ft_strcmp(env->key, key))
+// 		{
+// 			printf("the key -- -- > %s\n", key);
+			
+// 			temp = env;
+// 			env = env->next;
+// 			free(temp->key);
+// 			free(temp->value);
+// 			free(temp);
+// 		}
+// 		else
+// 			while (env)			
+// 			{
+// 				printf("original key ===> %s\tMy key ===>%s\n", key, env->key);
+// 				if (!ft_strcmp(env->key, key))
+// 				{
+// 					printf("the key -- -- > %s\n", key);
+// 					temp = env;
+// 					env = env->next;
+// 					free(temp->key);
+// 					free(temp->value);
+// 					free(temp);
+// 					break;
+// 				}
+// 				env = env->next;
+// 			}
+// 	}
+// }
+
 void	delete_envv(char *key)
 {
 	t_env *env;
@@ -56,7 +110,7 @@ void	delete_envv(char *key)
 		if (!ft_strcmp(env->key, key))
 		{
 			temp = env;
-			env = env->next;
+			g_all.env = env->next;
 			free(temp->key);
 			free(temp->value);
 			free(temp);
@@ -64,7 +118,7 @@ void	delete_envv(char *key)
 		else
 			while (env->next)
 			{
-				if (!ft_strcmp(env->key, key))
+				if (!ft_strcmp(env->next->key, key))
 				{
 					temp = env->next;
 					env->next = env->next->next;
@@ -77,6 +131,7 @@ void	delete_envv(char *key)
 			}
 }
 
+
 void	add_envv(char *key, char *value)
 {
 	t_env *env;
@@ -84,11 +139,13 @@ void	add_envv(char *key, char *value)
 
 	env = g_all.env;
 	if (env)
-		while (env)
+		while (env->next != NULL)
 			env = env->next;
 	new_env = (t_env *)malloc(sizeof(t_env));
 	new_env->key = ft_strdup(key);
-	new_env->value = ft_strdup(value);
+	new_env->value = NULL;
+	if (value)
+		new_env->value = ft_strdup(value);
 	new_env->next = NULL;
-	env = new_env;
+	env->next = new_env;
 }

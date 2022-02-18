@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 17:03:54 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/17 09:02:56 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/18 08:53:14 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ void execute_builtins(t_command *cmd)
 		ft_env();
 	else if (!ft_strcmp(cmd->cmd, "exit"))
 		ft_exit(cmd->args);
+	else if (!ft_strcmp(cmd->cmd, "export"))
+		ft_export(cmd->args);
+	else if (!ft_strcmp(cmd->cmd, "unset"))
+		ft_unset(cmd->args);
 }
 
 /* 	

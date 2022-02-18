@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/17 11:37:11 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/18 08:52:48 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,6 +219,7 @@ void	add_envv(char *key, char *value);
 void	delete_envv(char *key);
 void	replace_value(char *key, char *new_value);
 char	*get_value(char *key);
+int	key_exist(char *key);
 
 /*
 	builtins
@@ -228,5 +229,10 @@ void	ft_echo(char **args);
 void	ft_env();
 void	ft_pwd();
 void	ft_exit(char **args);
+void    ft_export(char **args);
+void    ft_unset(char **args);
 
+
+//
+char	**ft_split(char const *s, char c);
 #endif
