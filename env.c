@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 02:10:39 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/17 05:51:14 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/18 04:28:45 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void    ft_env()
     tmp = g_all.env;
     while (tmp != NULL)
     {
-        printf("%s=%s\n", tmp->key,tmp->value);
+        if (tmp->value)
+            printf("%s=%s\n", tmp->key,tmp->value);
         tmp = tmp->next;
     }
 }
