@@ -6,11 +6,18 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 15:04:58 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/17 03:57:40 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/20 03:24:07 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void free_env(t_env *env)
+{
+	free(env->key);
+	free(env->value);
+	free(env);
+}
 
 char *add_key(char *str)
 {
@@ -90,4 +97,5 @@ void collect_env(char **envv)
 		i++;
 	}
 	g_all.env = head;
+	g_all.env_arr = env_to_arr();
 }

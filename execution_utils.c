@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 22:32:10 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/16 02:26:05 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/20 03:52:16 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,18 @@
 
 void cntl_c(int sig)
 {
-	write(1, "\n", 1);
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
+	int	i;
+
+	i = sig;
+	if (g_all.pids_sig == 0)
+	{
+		g_all.exit_status = 1;
+		write(1, "\n", 1);
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+		i = 0;
+	}
 }
 
 int is_builtin(char *cmd)

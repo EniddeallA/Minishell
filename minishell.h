@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/19 07:22:45 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/20 03:46:39 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <string.h>
 # include <unistd.h>
 # include <signal.h>
+# include <fcntl.h>
+# include <sys/errno.h>
+#include <sys/stat.h>
 
 typedef struct s_redirect
 {
@@ -50,9 +53,12 @@ typedef struct s_all
 {
 	char *line;
 	t_env *env;
+	char **env_arr;
 	t_command *cmd;
 	int lexer_err;
 	int exit_status;
+	int ret;
+	int pids_sig;
 }	t_all;
 
 t_all g_all;
@@ -98,6 +104,10 @@ typedef struct s_pipe
 */
 
 void	collect_env(char **envv);
+t_env	*create_node(char *envv);
+char	*add_value(char *str);
+char	*add_key(char *str);
+void	free_env(t_env *env);
 
 /*
 	parser.c
@@ -188,7 +198,8 @@ int 	check_line();
 int		ft_strcmp(char *s1, char *s2);
 char	*ft_itoa(int n);
 int		ft_strcmp(char *s1, char *s2);
-int is_all_spaces(char *s);
+int		is_all_spaces(char *s);
+char	**ft_split(char const *s, char c);
 
 /*
 	execute.c
@@ -202,7 +213,7 @@ void	multiple_cmds(t_command *cmd, t_pipe *p);
 void	last_cmd(t_command *cmd, t_pipe *p);
 void	execute_cmd(t_command *cmd);
 void	redirect(t_command *cmd);
-void	execute_builtins(t_command *cmd);
+void	exec_ve(t_command *cmd);
 
 /*
 	execution_utils.c
@@ -219,7 +230,17 @@ void	add_envv(char *key, char *value);
 void	delete_envv(char *key);
 void	replace_value(char *key, char *new_value);
 char	*get_value(char *key);
-int	key_exist(char *key);
+int		key_exist(char *key);
+
+/*
+	env_to_arr.c
+*/
+
+void	free_env_arr();
+int		env_length(t_env *env);
+char	*get_env(t_env *env, int index);
+char	**env_to_arr();
+
 
 /*
 	builtins
@@ -232,7 +253,4 @@ void	ft_exit(char **args);
 void    ft_export(char **args);
 void    ft_unset(char **args);
 
-
-//
-char	**ft_split(char const *s, char c);
 #endif
