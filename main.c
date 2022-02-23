@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:02 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/17 08:58:52 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/23 13:47:40 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,3 +33,10 @@ int main(int argc, char **argv, char **envv)
 		}		
 	return (0);
 }
+
+/*
+
+export test=test
+echo $test > l | wc -l
+
+*/

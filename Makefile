@@ -6,13 +6,13 @@
 #    By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 14:24:17 by akhalid           #+#    #+#              #
-#    Updated: 2022/02/20 03:33:32 by akhalid          ###   ########.fr        #
+#    Updated: 2022/02/23 13:33:56 by akhalid          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	minishell
 CC			=	gcc
-CFLAG		=	 -g
+CFLAG		=	 -g3 -fsanitize=address
 LRL			=	"-lreadline"
 LDFLAGS		=	"-L/Users/akhalid/homebrew/Cellar/readline/8.1.1/lib"
 CPPFLAGS	=	"-I/Users/akhalid/homebrew/Cellar/readline/8.1.1/include"

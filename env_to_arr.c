@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 03:18:14 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/20 03:22:49 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/23 14:00:09 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*get_env(t_env *env, int index)
 		str = ft_strjoin(ft_strdup(env->key), ft_strdup("="));
 		str = ft_strjoin(str, ft_strdup(env->value));
 	}
-	return (ft_strdup(env->key));
+	return (ft_strdup(str));
 }
 
 char	**env_to_arr()
