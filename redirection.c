@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 04:44:31 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/23 13:49:12 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/23 14:49:26 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ int	create_file(t_redirect *red)
 	fd = -1;
 	if (red->type == INP)
 		fd = open(red->file, O_RDONLY, 0644);
-	else if (red->type == OUT || red->type == APND)
+	else if (red->type == OUT)
 		fd = open(red->file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	else if (red->type == APND)
+		fd = open(red->file, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	return (fd);
 }
 
