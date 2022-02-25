@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/20 03:46:39 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/24 22:49:54 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ typedef struct s_pipe
 	int inp;
 	int outp;
 	int state;
-	int last_state;
 	int last_pid;
 }	t_pipe;
 
@@ -200,6 +199,7 @@ char	*ft_itoa(int n);
 int		ft_strcmp(char *s1, char *s2);
 int		is_all_spaces(char *s);
 char	**ft_split(char const *s, char c);
+int 	n_args(char **args);
 
 /*
 	execute.c
@@ -214,6 +214,7 @@ void	last_cmd(t_command *cmd, t_pipe *p);
 void	execute_cmd(t_command *cmd);
 void	redirect(t_command *cmd);
 void	exec_ve(t_command *cmd);
+void	execute_builtins(t_command *cmd);
 
 /*
 	execution_utils.c
@@ -247,10 +248,11 @@ char	**env_to_arr();
 */
 
 void	ft_echo(char **args);
-void	ft_env();
-void	ft_pwd();
+void	ft_env(char **args);
+void	ft_pwd(void);
 void	ft_exit(char **args);
 void    ft_export(char **args);
 void    ft_unset(char **args);
+void	ft_cd(char **args);
 
 #endif

@@ -6,21 +6,24 @@
 /*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 02:10:39 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/18 04:28:45 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2022/02/23 22:42:19 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    ft_env()
+void    ft_env(char **args)
 {
     t_env *tmp;
-
-    tmp = g_all.env;
-    while (tmp != NULL)
+    
+    if (n_args(args) == 1)
     {
-        if (tmp->value)
-            printf("%s=%s\n", tmp->key,tmp->value);
-        tmp = tmp->next;
+        tmp = g_all.env;
+        while (tmp != NULL)
+        {
+            if (tmp->value)
+                printf("%s=%s\n", tmp->key,tmp->value);
+            tmp = tmp->next;
+        }
     }
 }

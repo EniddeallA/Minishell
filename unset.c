@@ -6,21 +6,11 @@
 /*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 08:51:25 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/18 09:11:56 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2022/02/23 20:42:46 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int n_args(char **args)
-{
-    int i;
-    
-    i = 0;
-    while(args[i])
-        i++;
-    return(i);
-}
 
 static int	ft_isalpha(int c)
 {

@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 01:58:05 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/08 03:25:52 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/23 13:45:28 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_redirect	*init_redirection(char *val, t_type type)
 	red = (t_redirect *)malloc(sizeof(t_redirect));
 	red->file = ft_strdup(val);
 	red->type = type;
+	red->next = NULL;
 	return (red);
 }
 
@@ -28,7 +29,7 @@ void 	create_redirection(t_redirect *red, char *val, t_type type)
 	t_redirect *current;
 	
 	current = red;
-	while (current->next)
+	while (current && current->next)
 		current = current->next;
 	new = (t_redirect *)malloc(sizeof(t_redirect));
 	new->file = ft_strdup(val);

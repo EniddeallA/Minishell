@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 02:40:13 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/17 05:51:26 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/23 16:42:29 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,6 @@ void     ft_pwd()
         printf("%s\n", buff);
         free(buff);
     }
+    else
+		printf("minishell:error retrieving current directory: getcwd failed\n");
 }

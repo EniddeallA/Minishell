@@ -6,7 +6,7 @@
 /*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 22:41:56 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/18 00:53:08 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2022/02/24 05:15:26 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,6 @@ int get_index(char **args)
             i++;
         }   
     }
-    return(i);
-}
-
-static int n_args(char **args)
-{
-    int i;
-    
-    i = 0;
-    while(args[i])
-        i++;
     return(i);
 }
 

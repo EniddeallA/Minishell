@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:10:55 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/16 22:50:15 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/23 14:39:01 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,19 @@ t_token *operator_token(t_lexer *lexer)
 	if (lexer->c == '>')
 	{
 		if (lexer->cmd[lexer->i + 1] == '>')
+		{
+			lexer_forward(lexer);
 			return (token_lf(lexer, init_token(APND, lexer_to_string(lexer))));
+		}
 		return(token_lf(lexer,init_token(OUT, lexer_to_string(lexer))));
 	}
 	if (lexer->c == '<')
 	{
 		if (lexer->cmd[lexer->i + 1] == '<')
+		{
+			lexer_forward(lexer);
 			return (token_lf(lexer, init_token(HRDOC, lexer_to_string(lexer))));
+		}
 		return(token_lf(lexer, init_token(INP, lexer_to_string(lexer))));
 	}
 	return (NULL);
