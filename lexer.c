@@ -6,15 +6,15 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:10:29 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/16 22:42:51 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/25 03:34:07 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_lexer	*init_lexer()
+t_lexer	*init_lexer(void)
 {
-	t_lexer *lexer;
+	t_lexer	*lexer;
 
 	lexer = (t_lexer *)malloc(sizeof(t_lexer));
 	lexer->cmd = g_all.line;
@@ -42,12 +42,18 @@ void	lexer_backward(t_lexer *lexer)
 	}
 }
 
-char *lexer_to_string(t_lexer *lexer)
+char	*lexer_to_string(t_lexer *lexer)
 {
-	char *s;
+	char	*s;
 
 	s = (char *)malloc(sizeof(char) * 2);
 	s[0] = lexer->c;
 	s[1] = '\0';
 	return (s);
+}
+
+void	skip_spaces(t_lexer *lexer)
+{
+	while (ft_isspace(lexer->c))
+		lexer_forward(lexer);
 }

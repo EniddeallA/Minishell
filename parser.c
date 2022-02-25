@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:10:57 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/23 13:54:19 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/25 03:31:15 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_token	**realloc_tokens(t_token **tokens, t_token *tmp)
 {
-	int i;
-	t_token **new;
+	int		i;
+	t_token	**new;
 
 	i = 0;
 	if (tokens)
@@ -24,6 +24,7 @@ t_token	**realloc_tokens(t_token **tokens, t_token *tmp)
 	new = (t_token **)malloc(sizeof(t_token *) * (i + 2));
 	i = 0;
 	if (tokens)
+	{
 		while (tokens[i])
 		{
 			new[i] = (t_token *)malloc(sizeof(t_token));
@@ -31,13 +32,14 @@ t_token	**realloc_tokens(t_token **tokens, t_token *tmp)
 			new[i]->type = tokens[i]->type;
 			i++;
 		}
+	}
 	new[i++] = tmp;
 	new[i] = NULL;
 	free_tokens(tokens);
 	return (new);
 }
 
-t_token *get_token(t_lexer *lexer)
+t_token	*get_token(t_lexer *lexer)
 {
 	if (lexer->c && lexer->i < lexer->length)
 	{
@@ -56,8 +58,8 @@ t_token *get_token(t_lexer *lexer)
 
 void	free_tokens(t_token **tokens)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	if (tokens)
 	{
@@ -71,10 +73,10 @@ void	free_tokens(t_token **tokens)
 	}
 }
 
-void parse_commands(t_token **tokens)
+void	parse_commands(t_token **tokens)
 {
-	t_command *cmd;
-	int i;
+	t_command	*cmd;
+	int			i;
 
 	g_all.cmd = init_command();
 	cmd = g_all.cmd;
@@ -82,8 +84,8 @@ void parse_commands(t_token **tokens)
 	while (tokens[i])
 	{
 		token_to_cmd(tokens, cmd, i);
-		if (tokens[i]->type == INP || tokens[i]->type == OUT ||
-			tokens[i]->type == APND || tokens[i]->type == HRDOC)
+		if (tokens[i]->type == INP || tokens[i]->type == OUT
+			|| tokens[i]->type == APND || tokens[i]->type == HRDOC)
 			i++;
 		if (tokens[i]->type == PIPE)
 		{
@@ -94,24 +96,21 @@ void parse_commands(t_token **tokens)
 	}
 }
 
-int syntax_error(t_token **token)
+void	parse(void)
 {
-	if (!token)
-		return (1);
-	return (0);
-}
+	t_lexer	*lexer;
+	t_token	**tokens;
+	t_token	*tmp;
 
-void	parse()
-{
-	t_lexer *lexer;
-    t_token **tokens;
-	t_token *tmp;
-
-    lexer = init_lexer();
-    tokens = (t_token **)malloc(sizeof(t_token *));
+	lexer = init_lexer();
+	tokens = (t_token **)malloc(sizeof(t_token *));
 	tokens[0] = NULL;
-	while ((tmp = get_token(lexer)))
+	tmp = get_token(lexer);
+	while (tmp)
+	{
 		tokens = realloc_tokens(tokens, tmp);
+		tmp = get_token(lexer);
+	}
 	if (syntax_error(tokens))
 		write(2, "minishell: syntax error near unexpected token\n", 47);
 	else if (g_all.lexer_err == 1)

@@ -12,9 +12,9 @@
 
 #include "minishell.h"
 
-t_command	*init_command()
+t_command	*init_command(void)
 {
-	t_command *cmd;
+	t_command	*cmd;
 
 	cmd = (t_command *)malloc(sizeof(t_command));
 	cmd->cmd = NULL;
@@ -27,8 +27,8 @@ t_command	*init_command()
 
 void	free_args(char **args)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	if (args)
 	{
@@ -38,11 +38,11 @@ void	free_args(char **args)
 	}
 }
 
-char **realloc_args(char **args, char *val)
+char	**realloc_args(char **args, char *val)
 {
-	int i;
-	char **new_args;
-	
+	int		i;
+	char	**new_args;
+
 	i = 0;
 	if (val[0] == ' ' && val[1] == '\0')
 		return (args);
@@ -52,11 +52,13 @@ char **realloc_args(char **args, char *val)
 	new_args = (char **)malloc(sizeof(char *) * (i + 2));
 	i = 0;
 	if (args)
+	{
 		while (args[i])
 		{
 			new_args[i] = ft_strdup(args[i]);
 			i++;
 		}
+	}
 	new_args[i++] = ft_strdup(val);
 	new_args[i] = NULL;
 	i = 0;
@@ -64,7 +66,7 @@ char **realloc_args(char **args, char *val)
 	return (new_args);
 }
 
-void 	token_to_cmd(t_token **tokens, t_command *cmd, int i)
+void	token_to_cmd(t_token **tokens, t_command *cmd, int i)
 {
 	if (tokens[i]->type == WRD)
 	{
@@ -72,8 +74,8 @@ void 	token_to_cmd(t_token **tokens, t_command *cmd, int i)
 			cmd->cmd = ft_strdup(tokens[i]->val);
 		cmd->args = realloc_args(cmd->args, tokens[i]->val);
 	}
-	else if (tokens[i]->type == INP || tokens[i]->type == OUT ||
-		tokens[i]->type == APND || tokens[i]->type == HRDOC)
+	else if (tokens[i]->type == INP || tokens[i]->type == OUT
+		|| tokens[i]->type == APND || tokens[i]->type == HRDOC)
 	{
 		if (!cmd->red)
 			cmd->red = init_redirection(tokens[i + 1]->val, tokens[i]->type);

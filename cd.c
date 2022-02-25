@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 05:28:26 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/24 22:32:54 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2022/02/25 03:02:28 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_cd1()
+void	ft_cd1(void)
 {
-	char *oldpwd;
-	char *tmp;
+	char	*oldpwd;
+	char	*tmp;
 
 	if (!key_exist("HOME"))
 		printf("minishell: cd: HOME not set\n");
@@ -28,12 +28,13 @@ void	ft_cd1()
 		replace_value("PWD", tmp);
 	}
 }
+
 void	ft_cd(char **args)
 {
-	char *oldpwd;
-	char *tmp;
-	
-    if (n_args(args) == 1)
+	char	*oldpwd;
+	char	*tmp;
+
+	if (n_args(args) == 1)
 		ft_cd1();
 	else
 	{

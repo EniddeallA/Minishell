@@ -6,16 +6,16 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 04:45:31 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/25 02:14:20 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/25 03:33:52 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**get_paths()
+char	**get_paths(void)
 {
-	char *value;
-	char **paths;
+	char	*value;
+	char	**paths;
 
 	value = get_env_value("PATH");
 	if (!value)
@@ -24,18 +24,10 @@ char	**get_paths()
 	return (paths);
 }
 
-char	*concatenate(char *str, char *cmd, char *path)
-{
-	str = ft_strdup(path);
-	str = ft_strjoin(str, ft_strdup("/"));
-	str = ft_strjoin(str, ft_strdup(cmd));
-	return (str);
-}
-
 char	*free_paths(char **paths, char *str, int ret)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (paths[i])
 		free(paths[i++]);
@@ -50,12 +42,12 @@ char	*free_paths(char **paths, char *str, int ret)
 	return (0);
 }
 
-char *get_path(char *cmd)
+char	*get_path(char *cmd)
 {
-	char **paths;
-	int i;
-	char *str;
-	int ret;
+	char	**paths;
+	int		i;
+	char	*str;
+	int		ret;
 
 	paths = get_paths();
 	if (!paths)
@@ -78,21 +70,9 @@ char *get_path(char *cmd)
 	return (free_paths(paths, str, 0));
 }
 
-void check_exec(char *path)
-{
-	struct stat buf;
-
-	if (stat(path, &buf) && S_ISDIR(buf.st_mode))
-	{
-		write(2, path, ft_strlen(path));
-		write(2, ": is a directory\n", ft_strlen(": is a directory\n"));
-		exit(126);
-	}
-}
-
 void	exec_ve(t_command *cmd)
 {
-	char *path;
+	char	*path;
 
 	path = get_path(cmd->cmd);
 	if (path)
@@ -115,7 +95,7 @@ void	exec_ve(t_command *cmd)
 	}
 }
 
-void execute_cmd(t_command *cmd)
+void	execute_cmd(t_command *cmd)
 {
 	if (!cmd)
 		exit(0);

@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 03:01:47 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/17 05:52:01 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/25 03:04:50 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_atoi(const char *str)
 	while (str[i] != '\0' && (str[i] == '\t' || str[i] == '\n'
 			|| str[i] == '\r' || str[i] == '\v'
 			|| str[i] == '\f' || str[i] == ' '))
-		i++;
+			i++;
 	if (str[i] == '-')
 		signe = -1;
 	if (str[i] == '-' || str[i] == '+')
@@ -51,39 +51,40 @@ int	ft_atoi(const char *str)
 
 int	check_str(char *str)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
-    if (!str[i])
-        return (1);
+	if (!str[i])
+		return (1);
 	while (str[i])
 		if (!ft_isdigit(str[i++]))
 			return (1);
 	return (0);
 }
 
-void ft_exit(char **args)
+void	ft_exit(char **args)
 {
-    if (args[1])
-    {
-        if (args[2])
-            printf("minishell: exit: too many arguments\n");
-        else if (!check_str(args[1]))
+	if (args[1])
+	{
+		if (args[2])
+			printf("minishell: exit: too many arguments\n");
+		else if (!check_str(args[1]))
 		{
-        	printf("exit\n");
-            exit(ft_atoi(args[1]));
+			printf("exit\n");
+			exit(ft_atoi(args[1]));
 		}
-        else
-        {
-            printf("exit\nminishell: exit: %s: numeric argument required\n",args[1]);
-            exit(-1);
-        }
-    }
-    else
-    {
-        printf("exit\n");
-        exit(0);
-    }
+		else
+		{
+			printf("exit\nminishell: exit: %s: numeric argument required\n",
+				args[1]);
+			exit (-1);
+		}
+	}
+	else
+	{
+		printf("exit\n");
+		exit(0);
+	}
 }

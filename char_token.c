@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-char *more_wrd_token(t_lexer *lexer, char *val)
+char	*more_wrd_token(t_lexer *lexer, char *val)
 {
 	if (lexer->c == '\'' || lexer->c == '\"')
 		return (ft_strjoin(val, char_quoted_wrd_token(lexer, lexer->c)));
@@ -20,10 +20,10 @@ char *more_wrd_token(t_lexer *lexer, char *val)
 		return (ft_strjoin(val, char_unquoted_wrd_token(lexer)));
 }
 
-char *char_quoted_wrd_token(t_lexer *lexer, char c)
+char	*char_quoted_wrd_token(t_lexer *lexer, char c)
 {
-	char *val;
-	char *s;
+	char	*val;
+	char	*s;
 
 	val = ft_strdup("");
 	lexer_forward(lexer);
@@ -47,18 +47,18 @@ char *char_quoted_wrd_token(t_lexer *lexer, char c)
 	return (val);
 }
 
-char *char_unquoted_wrd_token(t_lexer *lexer)
+char	*char_unquoted_wrd_token(t_lexer *lexer)
 {
-	char *val;
-	char *s;
+	char	*val;
+	char	*s;
 
 	val = ft_strdup("");
 	while (!is_operator(lexer->c) && !ft_isspace(lexer->c) && lexer->c)
 	{
 		if (lexer->c == '\'' || lexer->c == '\"')
 		{
-			val = ft_strjoin(val, char_quoted_wrd_token(lexer,lexer->c));
-			break;
+			val = ft_strjoin(val, char_quoted_wrd_token(lexer, lexer->c));
+			break ;
 		}
 		else if (lexer->c == '$')
 		{

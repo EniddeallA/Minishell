@@ -6,24 +6,24 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 15:04:58 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/23 13:58:55 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/25 02:59:39 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void free_env(t_env *env)
+void	free_env(t_env *env)
 {
 	free(env->key);
 	free(env->value);
 	free(env);
 }
 
-char *add_key(char *str)
+char	*add_key(char *str)
 {
-	int i;
-	char *key;
-	int length;
+	int		i;
+	char	*key;
+	int		length;
 
 	length = 0;
 	while (str[length] && str[length] != '=')
@@ -33,18 +33,18 @@ char *add_key(char *str)
 	while (str[i] && str[i] != '=')
 	{
 		key[i] = str[i];
-		i++;	
+		i++;
 	}
 	key[i] = '\0';
 	return (key);
 }
 
-char *add_value(char *str)
+char	*add_value(char *str)
 {
-	int i;
-	char *value;
-	int index;
-	int length;
+	int		i;
+	char	*value;
+	int		index;
+	int		length;
 
 	i = 0;
 	while (str[i])
@@ -62,10 +62,10 @@ char *add_value(char *str)
 	return (value);
 }
 
-t_env *create_node(char *envv)
+t_env	*create_node(char *envv)
 {
-	t_env *node;
-	
+	t_env	*node;
+
 	node = (t_env *)malloc(sizeof(t_env));
 	node->key = add_key(envv);
 	node->value = add_value(envv);
@@ -73,12 +73,12 @@ t_env *create_node(char *envv)
 	return (node);
 }
 
-void collect_env(char **envv)
+void	collect_env(char **envv)
 {
-	int i;
-	t_env *head;
-	t_env *last;
-	t_env *new;
+	int		i;
+	t_env	*head;
+	t_env	*last;
+	t_env	*new;
 
 	head = NULL;
 	i = 0;

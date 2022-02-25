@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 01:29:06 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/18 01:29:20 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2022/02/25 03:13:27 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static	int		wordcount(char *s, char c)
+static int	wordcount(char *s, char c)
 {
-	int wc;
+	int	wc;
 
 	if (!*s)
 		return (0);
@@ -28,12 +28,13 @@ static	int		wordcount(char *s, char c)
 	return (wc);
 }
 
-static	int		*wordlength(char *s, char c, int wc)
+static int	*wordlength(char *s, char c, int wc)
 {
-	int *wl;
-	int i;
+	int	*wl;
+	int	i;
 
-	if (((wl = (int*)malloc(sizeof(int) * wc)) == 0) || !s)
+	wl = (int *)malloc(sizeof(int) * wc);
+	if (!wl || !s)
 		return (0);
 	i = 0;
 	while (*s && wc--)
@@ -51,21 +52,22 @@ static	int		*wordlength(char *s, char c, int wc)
 	return (wl);
 }
 
-static	void	*garbage(char **split, int i)
+static void	*garbage(char **split, int i)
 {
 	while (i >= 0)
 		free(split[i--]);
 	return (0);
 }
 
-static	char	**spliit(char *ss, char c, char **split, int wc)
+static char	**spliit(char *ss, char c, char **split, int wc)
 {
-	int i;
-	int j;
-	int *wl;
+	int	i;
+	int	j;
+	int	*wl;
 
 	i = 0;
-	if ((wl = wordlength(ss, c, wc)) == 0)
+	wl = wordlength(ss, c, wc);
+	if (!wl)
 		return (0);
 	while (i < wc)
 	{
@@ -74,7 +76,8 @@ static	char	**spliit(char *ss, char c, char **split, int wc)
 			ss++;
 		if (*ss != c && *ss)
 		{
-			if ((split[i] = (char*)malloc(wl[i] + 1)) == 0)
+			split[i] = (char *)malloc(wl[i] + 1);
+			if (!split[i])
 				return (garbage(split, i));
 			while (*ss != c && *ss)
 				split[i][j++] = *ss++;
@@ -86,7 +89,7 @@ static	char	**spliit(char *ss, char c, char **split, int wc)
 	return (split);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**split;
 	char	*ss;
@@ -96,7 +99,8 @@ char			**ft_split(char const *s, char c)
 	if (!ss)
 		return (0);
 	wc = wordcount(ss, c);
-	if (((split = (char**)malloc(sizeof(char*) * (wc + 1))) == 0))
+	split = (char **)malloc(sizeof(char *) * (wc + 1));
+	if (!split)
 		return (0);
 	return (spliit(ss, c, split, wc));
 }

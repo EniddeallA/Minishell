@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 04:44:31 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/23 14:49:26 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/25 02:47:20 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	create_file(t_redirect *red)
 {
-	int fd;
+	int	fd;
 
 	fd = -1;
 	if (red->type == INP)
@@ -26,10 +26,10 @@ int	create_file(t_redirect *red)
 	return (fd);
 }
 
-void redirect_file(t_redirect *red)
+void	redirect_file(t_redirect *red)
 {
-	int tmp_fd;
-	t_redirect *curr;
+	int			tmp_fd;
+	t_redirect	*curr;
 
 	curr = red;
 	while (curr)
@@ -44,9 +44,9 @@ void redirect_file(t_redirect *red)
 	}
 }
 
-void redirect(t_command *cmd)
+void	redirect(t_command *cmd)
 {
-	t_redirect *red;
+	t_redirect	*red;
 
 	red = cmd->red;
 	while (red)

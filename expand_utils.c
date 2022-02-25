@@ -6,21 +6,21 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 22:44:52 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/08 00:27:58 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/25 02:48:24 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char *expand_exit_status(t_lexer *lexer)
+char	*expand_exit_status(t_lexer *lexer)
 {
 	lexer_forward(lexer);
-	return(ft_itoa(g_all.exit_status));
+	return (ft_itoa(g_all.exit_status));
 }
 
-char *get_env_value(char *key)
+char	*get_env_value(char *key)
 {
-	t_env *env;
+	t_env	*env;
 
 	if (!key)
 		return (0);
@@ -38,7 +38,7 @@ char *get_env_value(char *key)
 
 char	*expand_key(char *key)
 {
-	char *val;
+	char	*val;
 
 	val = get_env_value(key);
 	if (val)
@@ -47,7 +47,7 @@ char	*expand_key(char *key)
 		return (ft_strdup(""));
 }
 
-char *more_expansion(t_lexer *lexer, char *tmp)
+char	*more_expansion(t_lexer *lexer, char *tmp)
 {
 	if (lexer->c == '$')
 		tmp = ft_strjoin(tmp, unquoted_expansion(lexer));

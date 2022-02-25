@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 08:51:25 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/23 20:42:46 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2022/02/25 03:08:35 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,21 @@ static int	ft_isalpha(int c)
 		return (0);
 }
 
-void    ft_unset(char **args)
+void	ft_unset(char **args)
 {
-    int i;
-    
-    if (n_args(args) > 1)
-    {
-        i = 1;
-        while (args[i])
-        {
-            if (!ft_isalpha(args[i][0]))
-                printf("minishell: unset: `%s': not a valid identifier\n", args[i]);
-            else
-                delete_envv(args[i]);
-            i++;
-        }
-    }
+	int	i;
+
+	if (n_args(args) > 1)
+	{
+		i = 1;
+		while (args[i])
+		{
+			if (!ft_isalpha(args[i][0]))
+				printf("minishell: unset: `%s': not a valid identifier\n",
+					args[i]);
+			else
+				delete_envv(args[i]);
+			i++;
+		}
+	}
 }
