@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 04:45:31 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/23 14:02:00 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/25 02:14:20 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char *get_path(char *cmd)
 	paths = get_paths();
 	if (!paths)
 		return (cmd);
-	if (!cmd[0])
+	if (!cmd)
 		return (0);
 	i = -1;
 	while (paths[++i])
@@ -107,8 +107,11 @@ void	exec_ve(t_command *cmd)
 	{
 		if (errno == 13)
 			exit(126);
-		write(2, cmd->cmd, ft_strlen(cmd->cmd));
-		write(2, ": command not found\n", ft_strlen(": command not found\n"));
+		if (cmd->cmd)
+		{
+			write(2, cmd->cmd, ft_strlen(cmd->cmd));
+			write(2, ": command not found\n", ft_strlen(": command not found\n"));
+		}
 	}
 }
 

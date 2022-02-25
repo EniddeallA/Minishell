@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/25 01:32:19 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2022/02/25 01:43:27 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,7 @@ int		ft_strcmp(char *s1, char *s2);
 int		is_all_spaces(char *s);
 char	**ft_split(char const *s, char c);
 int 	n_args(char **args);
+char	*ft_itoa(int n);
 
 /*
 	execute.c
