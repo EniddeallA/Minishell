@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 03:31:22 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/25 03:33:55 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/25 03:53:35 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,10 @@ void	check_exec(char *path)
 		write(2, ": is a directory\n", ft_strlen(": is a directory\n"));
 		exit(126);
 	}
+}
+
+t_token	*free_val(char	*val)
+{
+	free(val);
+	return (0);
 }

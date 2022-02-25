@@ -71,9 +71,6 @@ char	*char_unquoted_wrd_token(t_lexer *lexer)
 		lexer_forward(lexer);
 	}
 	if (!val[0])
-	{
-		free(val);
-		return (0);
-	}
+		return ((char *)free_val(val));
 	return (val);
 }

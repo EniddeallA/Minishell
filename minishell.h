@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/25 03:35:55 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/25 03:53:03 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,7 @@ char		*ft_itoa(int n);
 void		wait_sigs(t_pipe *p);
 char		*concatenate(char *str, char *cmd, char *path);
 void		check_exec(char *path);
+t_token		*free_val(char	*val);
 
 /*
 	execute.c

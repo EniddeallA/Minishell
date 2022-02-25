@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:10:55 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/25 02:57:10 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/25 03:53:27 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,6 @@ t_token	*unquoted_wrd_token(t_lexer *lexer)
 		lexer_forward(lexer);
 	}
 	if (!val[0])
-	{
-		free(val);
-		return (0);
-	}
+		return (free_val(val));
 	return (init_token(WRD, val));
 }
