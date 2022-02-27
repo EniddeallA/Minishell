@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 03:32:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/27 15:30:24 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/27 21:35:36 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	key_exist(char *key)
 void	replace_value(char *key, char *new_value)
 {
 	t_env	*env;
-	char	*temp;
 
 	env = g_all.env;
 	if (env)

@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:43:42 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/25 02:49:11 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/27 22:02:19 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*unquoted_expansion(t_lexer *lexer)
 	char	*val;
 
 	lexer_forward(lexer);
-	if (lexer->c == '$' || lexer->c == '\"' || lexer->c == ' ' || !lexer->c)
+	if (lexer->c == '$' || lexer->c == ' ' || !lexer->c)
 		return (ft_strdup("$"));
 	if (lexer->c == '?')
 		return (expand_exit_status(lexer));

@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 03:31:22 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/25 03:53:35 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/27 22:22:20 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,18 @@
 
 int	syntax_error(t_token **token)
 {
+	int	i;
+
 	if (!token)
 		return (1);
+	i = 0;
+	while (token[i])
+	{
+		if ((token[i]->type == APND || token[i]->type == INP
+				||token[i]->type == OUT) && !token[i + 1])
+			return (1);
+		i++;
+	}
 	return (0);
 }
 

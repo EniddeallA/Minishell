@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 22:41:56 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/25 03:01:44 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/27 21:35:41 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	is_option(char *args)
 int	get_index(char **args)
 {
 	int	i;
-	int	j;
 
 	i = 1;
 	if (is_option(args[1]))

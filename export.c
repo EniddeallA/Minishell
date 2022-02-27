@@ -6,13 +6,13 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 00:56:44 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/25 03:07:32 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/27 22:25:49 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_env2(char **args)
+void	ft_env2(void)
 {
 	t_env	*tmp;
 
@@ -25,14 +25,6 @@ void	ft_env2(char **args)
 			printf("declare -x %s=\"%s\"\n", tmp->key, tmp->value);
 		tmp = tmp->next;
 	}
-}
-
-int	ft_isalpha(int c)
-{
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-		return (1);
-	else
-		return (0);
 }
 
 char	*ft_strchr(const char *s, int c)
@@ -81,20 +73,36 @@ void	add_replace(char **tmp)
 	}
 }
 
+int	check_arg(char *tmp)
+{
+	int	i;
+
+	if (!ft_isalpha(tmp[0]) && tmp[0] != '_')
+		return (0);
+	i = 1;
+	while (tmp[i])
+	{
+		if (!isalpha_num(tmp[i]) && tmp[i] != '_')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	ft_export(char **args)
 {
 	int		i;
 	char	**tmp;
 
 	if (n_args(args) == 1)
-		ft_env2(args);
+		ft_env2();
 	else if (n_args(args) > 1)
 	{
 		i = 1;
 		while (args[i])
 		{
 			tmp = ft_split(args[i], '=');
-			if (!ft_isalpha(tmp[0][0]) && tmp[0][0] != '_')
+			if (!check_arg(tmp[0]))
 				printf("minishell: export: `%s': not a valid identifier\n",
 					args[i]);
 			else if (ft_strchr(args[i], '='))

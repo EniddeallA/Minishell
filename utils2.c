@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 03:14:41 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/25 03:19:58 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/27 21:37:55 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_strdup(char *s1)
 	return (dup);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, int start, size_t len)
 {
 	char	*ss;
 	char	*sub;

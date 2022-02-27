@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/27 15:44:05 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/27 22:26:29 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,7 @@ t_redirect	*init_redirection(char *val, t_type type);
 */
 
 int			ft_strlen(char *s);
-char		*ft_substr(char *s, unsigned int start, size_t len);
+char		*ft_substr(char *s, int start, size_t len);
 int			ft_isspace(char c);
 void		skip_spaces(t_lexer *lexer);
 int			is_operator(char c);
@@ -203,6 +203,8 @@ char		*concatenate(char *str, char *cmd, char *path);
 void		check_exec(char *path);
 t_token		*free_val(char	*val);
 int			compare_env(t_env **env, char *key);
+int			ft_isalpha(int c);
+int			isalpha_num(int c);
 
 /*
 	execute.c
