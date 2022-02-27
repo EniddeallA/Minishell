@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 03:01:47 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/25 03:04:50 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/27 23:07:38 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,8 @@ int	ft_atoi(const char *str)
 	while (ft_isdigit(str[i]))
 	{
 		result = (result * 10) + (str[i] - '0');
-		if ((result * signe) > 2147483647)
-			return (-1);
-		else if ((result * signe) < -2147483648)
-			return (-1);
+		if ((result * signe) > 2147483647 || (result * signe) < -2147483648)
+			return ((result * signe) % 128);
 		i++;
 	}
 	return ((int)(result * signe));
