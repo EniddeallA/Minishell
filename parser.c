@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:10:57 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/25 03:31:15 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/27 15:31:39 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,29 +94,4 @@ void	parse_commands(t_token **tokens)
 		}
 		i++;
 	}
-}
-
-void	parse(void)
-{
-	t_lexer	*lexer;
-	t_token	**tokens;
-	t_token	*tmp;
-
-	lexer = init_lexer();
-	tokens = (t_token **)malloc(sizeof(t_token *));
-	tokens[0] = NULL;
-	tmp = get_token(lexer);
-	while (tmp)
-	{
-		tokens = realloc_tokens(tokens, tmp);
-		tmp = get_token(lexer);
-	}
-	if (syntax_error(tokens))
-		write(2, "minishell: syntax error near unexpected token\n", 47);
-	else if (g_all.lexer_err == 1)
-		write(2, "minishell: quotes left unclosed\n", 33);
-	else
-		parse_commands(tokens);
-	free_tokens(tokens);
-	free(lexer);
 }

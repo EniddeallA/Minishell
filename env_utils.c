@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 03:32:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/25 02:52:55 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/27 15:30:24 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,8 @@ void	delete_envv(char *key)
 		{
 			while (env->next)
 			{
-				if (!ft_strcmp(env->next->key, key))
-				{
-					temp = env->next;
-					env->next = env->next->next;
-					free_env(temp);
+				if (!compare_env(&env, key))
 					break ;
-				}
 				env = env->next;
 			}
 		}

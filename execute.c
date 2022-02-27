@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 17:03:54 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/25 03:33:04 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/27 15:32:38 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,21 +65,6 @@ void	last_cmd(t_command *cmd, t_pipe *p)
 		close(p->inp);
 }
 
-void	simple_cmd(t_command *cmd)
-{
-	int	inp;
-	int	outp;
-
-	inp = dup(0);
-	outp = dup(1);
-	redirect(cmd);
-	execute_builtins(cmd);
-	dup2(inp, 0);
-	dup2(outp, 1);
-	close(inp);
-	close(outp);
-}
-
 void	complex_cmd(t_command *cmd)
 {
 	t_command	*cmdd;
@@ -106,12 +91,17 @@ void	complex_cmd(t_command *cmd)
 	wait_sigs(&p);
 }
 
-void	execute(t_command *cmd)
+void	simple_cmd(t_command *cmd)
 {
-	open_heredocs(cmd);
-	if (!cmd->next && is_builtin(cmd->cmd))
-		simple_cmd(cmd);
-	else
-		complex_cmd(cmd);
-	close_heredocs(cmd);
+	int	inp;
+	int	outp;
+
+	inp = dup(0);
+	outp = dup(1);
+	redirect(cmd);
+	execute_builtins(cmd);
+	dup2(inp, 0);
+	dup2(outp, 1);
+	close(inp);
+	close(outp);
 }
