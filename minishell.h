@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/28 02:39:32 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/28 15:46:50 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,7 @@ t_token		*free_val(char	*val);
 int			compare_env(t_env **env, char *key);
 int			ft_isalpha(int c);
 int			isalpha_num(int c);
+void		free_tmp(char **tmp);
 
 /*
 	execute.c

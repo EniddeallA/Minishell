@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 03:32:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/27 21:35:36 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/28 15:31:12 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,6 @@ void	add_envv(char *key, char *value)
 		new_env->value = ft_strdup(value);
 	new_env->next = NULL;
 	env->next = new_env;
+	free_env_arr();
+	g_all.env_arr = env_to_arr();
 }

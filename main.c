@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:02 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/28 02:54:04 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/28 15:46:21 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	parse(void)
 
 void	free_cmd(t_command *cmd)
 {
-	int i;
-	t_command *tmp;
-	t_redirect *red;
+	int			i;
+	t_command	*tmp;
+	t_redirect	*red;
 
 	while (cmd)
 	{

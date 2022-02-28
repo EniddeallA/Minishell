@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 00:56:44 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/27 22:25:49 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/28 15:46:33 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,13 @@ void	ft_export(char **args)
 				printf("minishell: export: `%s': not a valid identifier\n",
 					args[i]);
 			else if (ft_strchr(args[i], '='))
+			{
 				add_replace(tmp);
+			}
 			else if (!key_exist(tmp[0]))
 				add_envv(tmp[0], NULL);
 			i++;
 		}
+		free_tmp(tmp);
 	}
 }

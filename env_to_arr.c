@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 03:18:14 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/28 02:24:59 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/28 15:39:51 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	free_env_arr(void)
 	i = 0;
 	while (g_all.env_arr[i])
 		free(g_all.env_arr[i++]);
-	free(g_all.env_arr[i]);
+	free(g_all.env_arr);
 }
 
 int	env_length(t_env *env)
