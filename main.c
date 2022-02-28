@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:02 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/28 15:46:21 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/28 19:29:06 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,13 @@ void	execute(t_command *cmd)
 	free_cmd(cmd);
 }
 
+void	init_g_all(void)
+{
+	g_all.lexer_err = 0;
+	g_all.forked = 0;
+	g_all.ret = 0;
+}
+
 int	main(int argc, char **argv, char **envv)
 {
 	(void)argv;
@@ -84,6 +91,7 @@ int	main(int argc, char **argv, char **envv)
 	{
 		while (1)
 		{
+			init_g_all();
 			signal(SIGINT, cntl_c);
 			signal(SIGQUIT, cntl_bslash);
 			g_all.line = readline("minishell-v1.0$ ");
