@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 02:40:13 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/25 03:08:01 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/28 00:56:47 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_pwd(void)
 {
 	char	*buff;
+	char	*temp;
 
 	buff = getcwd(NULL, 0);
 	if (buff)
@@ -23,5 +24,9 @@ void	ft_pwd(void)
 		free(buff);
 	}
 	else
-		printf("minishell:error retrieving current directory: getcwd failed\n");
+	{
+		temp = get_value("PWD");
+		replace_value("PWD", temp);
+		printf("%s\n", temp);
+	}
 }

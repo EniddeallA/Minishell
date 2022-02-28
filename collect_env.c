@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 15:04:58 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/25 02:59:39 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/28 01:51:14 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	collect_env(char **envv)
 				last = last->next;
 			last->next = new;
 		}
+		free_env(new);
 		i++;
 	}
 	g_all.env = head;

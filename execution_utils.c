@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 22:32:10 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/25 03:33:23 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/28 01:13:45 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,21 @@ void	cntl_c(int sig)
 		rl_replace_line("", 0);
 		rl_redisplay();
 		i = 0;
+	}
+}
+
+void	cntl_bslash(int sig)
+{
+	(void)sig;
+	if (g_all.forked)
+	{
+		write(2, "^Quit: 3\n", ft_strlen("^Quit: 3\n"));
+		rl_on_new_line();
+	}
+	else
+	{
+		rl_on_new_line();
+		rl_redisplay();
 	}
 }
 

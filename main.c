@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:02 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/27 21:22:38 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/28 01:52:06 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	execute(t_command *cmd)
 		simple_cmd(cmd);
 	else
 		complex_cmd(cmd);
+	g_all.forked = 0;
 	close_heredocs(cmd);
 }
 
@@ -56,7 +57,7 @@ int	main(int argc, char **argv, char **envv)
 		while (1)
 		{
 			signal(SIGINT, cntl_c);
-			signal(SIGQUIT, SIG_IGN);
+			signal(SIGQUIT, cntl_bslash);
 			g_all.line = readline("minishell-v1.0$ ");
 			if (!check_line())
 				exit(0);

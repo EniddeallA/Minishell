@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/27 22:26:29 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/28 00:44:04 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_all
 	int			exit_status;
 	int			ret;
 	int			pids_sig;
+	int			forked;
 }	t_all;
 
 t_all	g_all;
@@ -227,6 +228,7 @@ void		execute_builtins(t_command *cmd);
 
 void		cntl_c(int sig);
 int			is_builtin(char *cmd);
+void		cntl_bslash(int sig);
 
 /*
 	env_utils.c
