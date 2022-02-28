@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 22:22:40 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/28 23:54:29 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/01 00:11:24 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,45 @@ void	free_tmp(char **tmp)
 	free(tmp);
 }
 
-char	*ft_strchr(const char *str, int c)
+void	free_rdr(t_redirect *rdr)
 {
-	char	*ptr;
-	char	sym;
+	t_redirect	*cur;
+	t_redirect	*tmp;
 
-	ptr = (char *)str;
-	sym = (char)c;
-	while (*ptr && !(*ptr == sym))
-		ptr++;
-	if (*ptr == sym)
-		return (ptr);
-	else
-		return (NULL);
+	cur = rdr;
+	while (cur)
+	{
+		free(cur->file);
+		tmp = cur;
+		cur = cur->next;
+		free(tmp);
+	}
+}
+
+void	free_cmd(void)
+{
+	t_command	*cur;
+	t_command	*tmp;
+	int			i;
+
+	if (g_all.cmd == NULL)
+		return ;
+	cur = g_all.cmd;
+	while (cur)
+	{
+		if (cur->cmd)
+			free(cur->cmd);
+		i = 0;
+		while (cur->args && cur->args[i])
+		{
+			free(cur->args[i]);
+			i++;
+		}
+		if (cur->args)
+			free(cur->args);
+		free_rdr(cur->red);
+		tmp = cur;
+		cur = cur->next;
+		free(tmp);
+	}
 }

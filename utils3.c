@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 03:31:22 by akhalid           #+#    #+#             */
-/*   Updated: 2022/03/01 00:00:42 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/01 00:12:11 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	check_line(void)
 	return (1);
 }
 
-char	*concatenate(char *str, char *cmd, char *path)	
+char	*concatenate(char *str, char *cmd, char *path)
 {
 	str = ft_strdup(path);
 	str = ft_strjoin(str, ft_strdup("/"));

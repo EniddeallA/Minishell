@@ -6,30 +6,11 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:02 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/28 23:54:26 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/01 00:11:58 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	check_ambigous_file(t_token **tokens)
-{
-	int	i;
-
-	i = 0;
-	while (tokens[i])
-	{
-		if (tokens[i]->type != WRD && tokens[i]->type != PIPE
-			&& tokens[i]->type != HRDOC)
-		{
-			if (ft_strchr(tokens[i + 1]->val, ' '))
-				return (1);
-			i++;
-		}
-		i++;
-	}
-	return (0);
-}
 
 void	parse(void)
 {
@@ -57,49 +38,6 @@ void	parse(void)
 	free_tokens(tokens);
 	free(lexer->cmd);
 	free(lexer);
-}
-
-void	free_rdr(t_redirect *rdr)
-{
-	t_redirect	*cur;
-	t_redirect	*tmp;
-
-	cur = rdr;
-	while (cur)
-	{
-		free(cur->file);
-		tmp = cur;
-		cur = cur->next;
-		free(tmp);
-	}
-}
-
-void	free_cmd(void)
-{
-	t_command	*cur;
-	t_command	*tmp;
-	int			i;
-
-	if (g_all.cmd == NULL)
-		return ;
-	cur = g_all.cmd;
-	while (cur)
-	{
-		if (cur->cmd)
-			free(cur->cmd);
-		i = 0;
-		while (cur->args && cur->args[i])
-		{
-			free(cur->args[i]);
-			i++;
-		}
-		if (cur->args)
-			free(cur->args);
-		free_rdr(cur->red);
-		tmp = cur;
-		cur = cur->next;
-		free(tmp);
-	}
 }
 
 void	execute(t_command *cmd)
@@ -146,8 +84,3 @@ int	main(int argc, char **argv, char **envv)
 	}
 	return (0);
 }
-
-
-/*
- >> eof
-*/

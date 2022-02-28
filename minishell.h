@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/28 23:57:48 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/01 00:12:29 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,9 @@ int			ft_isalpha(int c);
 int			isalpha_num(int c);
 void		free_tmp(char **tmp);
 char		*ft_strchr(const char *str, int c);
+void		free_rdr(t_redirect *rdr);
+void		free_cmd(void);
+int			check_ambigous_file(t_token **tokens);
 
 /*
 	execute.c
