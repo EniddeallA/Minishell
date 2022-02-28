@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 17:03:54 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/28 01:04:45 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/28 23:26:30 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	single_cmd(t_command *cmd, t_pipe *p)
 {
 	p->pid = fork();
 	p->last_pid = p->pid;
-	g_all.forked = 1;
 	if (!p->pid)
 	{
+		signal(SIGQUIT, SIG_DFL);
 		redirect(cmd);
 		execute_cmd(cmd);
 	}
@@ -32,9 +32,9 @@ void	multiple_cmds(t_command *cmd, t_pipe *p)
 	close(p->outp);
 	p->outp = p->pipe[1];
 	p->pid = fork();
-		g_all.forked = 1;
 	if (!p->pid)
 	{
+		signal(SIGQUIT, SIG_DFL);
 		dup2(p->outp, 1);
 		close(p->pipe[1]);
 		dup2(p->inp, 0);
@@ -52,9 +52,9 @@ void	last_cmd(t_command *cmd, t_pipe *p)
 {
 	p->pid = fork();
 	p->last_pid = p->pid;
-		g_all.forked = 1;
 	if (!p->pid)
 	{
+		signal(SIGQUIT, SIG_DFL);
 		if (p->inp)
 			dup2(p->inp, 0);
 		if (p->inp)
@@ -91,7 +91,7 @@ void	complex_cmd(t_command *cmd)
 		}
 		cmdd = cmdd->next;
 	}
-	wait_sigs(&p);
+	waiting_sigs(&p);
 }
 
 void	simple_cmd(t_command *cmd)

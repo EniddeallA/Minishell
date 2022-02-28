@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 04:45:31 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/27 17:58:13 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/01 00:03:50 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	exec_ve(t_command *cmd)
 	{
 		if (errno == 13)
 			exit(126);
-		if (cmd->cmd)
+		else if (cmd->cmd)
 		{
 			write(2, cmd->cmd, ft_strlen(cmd->cmd));
 			write(2, ": command not found\n", ft_strlen(": command not found\n"));
@@ -97,11 +97,11 @@ void	exec_ve(t_command *cmd)
 
 void	execute_cmd(t_command *cmd)
 {
-	if (!cmd)
+	if (cmd == NULL)
 		exit(0);
 	if (is_builtin(cmd->cmd))
 		execute_builtins(cmd);
 	else
 		exec_ve(cmd);
-	exit(0);
+	exit(127);
 }

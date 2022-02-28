@@ -6,42 +6,11 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 22:32:10 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/28 01:13:45 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/28 22:48:30 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	cntl_c(int sig)
-{
-	int	i;
-
-	i = sig;
-	if (g_all.pids_sig == 0)
-	{
-		g_all.exit_status = 1;
-		write(1, "\n", 1);
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-		i = 0;
-	}
-}
-
-void	cntl_bslash(int sig)
-{
-	(void)sig;
-	if (g_all.forked)
-	{
-		write(2, "^Quit: 3\n", ft_strlen("^Quit: 3\n"));
-		rl_on_new_line();
-	}
-	else
-	{
-		rl_on_new_line();
-		rl_redisplay();
-	}
-}
 
 int	is_builtin(char *cmd)
 {
@@ -69,13 +38,4 @@ void	execute_builtins(t_command *cmd)
 		ft_unset(cmd->args);
 	else if (!ft_strcmp(cmd->cmd, "cd"))
 		ft_cd(cmd->args);
-}
-
-void	wait_sigs(t_pipe *p)
-{
-	g_all.pids_sig = 1;
-	waitpid(p->last_pid, &(p->state), 0);
-	if (WIFEXITED(p->state))
-		g_all.exit_status = WEXITSTATUS(p->state);
-	g_all.pids_sig = 0;
 }

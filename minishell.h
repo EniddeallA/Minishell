@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/28 15:46:50 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/28 23:57:48 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <fcntl.h>
 # include <sys/errno.h>
 # include <sys/stat.h>
+# include <sys/wait.h>
 
 typedef struct s_redirect
 {
@@ -59,7 +60,6 @@ typedef struct s_all
 	int			exit_status;
 	int			ret;
 	int			pids_sig;
-	int			forked;
 }	t_all;
 
 t_all	g_all;
@@ -75,11 +75,11 @@ typedef struct s_lexer
 typedef enum s_type
 {
 	WRD,
-	PIPE,
 	INP,
 	OUT,
 	APND,
-	HRDOC
+	HRDOC,
+	PIPE,
 }	t_type;
 
 typedef struct s_token
@@ -96,6 +96,7 @@ typedef struct s_pipe
 	int	outp;
 	int	state;
 	int	last_pid;
+	int	laststat;
 }	t_pipe;
 
 /*
@@ -199,7 +200,7 @@ int			is_all_spaces(char *s);
 char		**ft_split(char const *s, char c);
 int			n_args(char **args);
 char		*ft_itoa(int n);
-void		wait_sigs(t_pipe *p);
+void		waiting_sigs(t_pipe *p);
 char		*concatenate(char *str, char *cmd, char *path);
 void		check_exec(char *path);
 t_token		*free_val(char	*val);
@@ -207,6 +208,7 @@ int			compare_env(t_env **env, char *key);
 int			ft_isalpha(int c);
 int			isalpha_num(int c);
 void		free_tmp(char **tmp);
+char		*ft_strchr(const char *str, int c);
 
 /*
 	execute.c
@@ -229,7 +231,6 @@ void		execute_builtins(t_command *cmd);
 
 void		cntl_c(int sig);
 int			is_builtin(char *cmd);
-void		cntl_bslash(int sig);
 
 /*
 	env_utils.c
