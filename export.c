@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 00:56:44 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/28 23:54:20 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/01 00:40:37 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_export(char **args)
 
 	if (n_args(args) == 1)
 		ft_env2();
-	else if (n_args(args) > 1)
+	else if (n_args(args) == 2)
 	{
 		i = 1;
 		while (args[i])
@@ -80,13 +80,13 @@ void	ft_export(char **args)
 				printf("minishell: export: `%s': not a valid identifier\n",
 					args[i]);
 			else if (ft_strchr(args[i], '='))
-			{
 				add_replace(tmp);
-			}
 			else if (!key_exist(tmp[0]))
 				add_envv(tmp[0], NULL);
 			i++;
 		}
 		free_tmp(tmp);
 	}
+	else
+		printf("minishell: export: not a valid identifier\n");
 }
