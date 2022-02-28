@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 15:04:58 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/28 01:51:14 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/28 02:21:26 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,23 +78,20 @@ void	collect_env(char **envv)
 	int		i;
 	t_env	*head;
 	t_env	*last;
-	t_env	*new;
 
 	head = NULL;
 	i = 0;
 	while (envv[i])
 	{
 		last = head;
-		new = create_node(envv[i]);
 		if (!head)
-			head = new;
+			head = create_node(envv[i]);
 		else
 		{
 			while (last->next)
 				last = last->next;
-			last->next = new;
+			last->next = create_node(envv[i]);
 		}
-		free_env(new);
 		i++;
 	}
 	g_all.env = head;

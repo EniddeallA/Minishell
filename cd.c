@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 05:28:26 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/28 01:43:54 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/28 02:43:31 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_cd1(void)
 	{
 		oldpwd = getcwd(NULL, 0);
 		replace_value("OLDPWD", oldpwd);
+		free(oldpwd);
 		tmp = get_value("HOME");
 		chdir(tmp);
 		replace_value("PWD", tmp);
@@ -46,11 +47,13 @@ void	ft_cd(char **args)
 			replace_value("OLDPWD", oldpwd);
 			tmp = getcwd(NULL, 0);
 			replace_value("PWD", tmp);
+			free(tmp);
 		}
 		else
 		{
 			tmp = getcwd(NULL, 0);
 			replace_value("PWD", tmp);
+			free(tmp);
 			printf("minishell: cd: %s: No such file or directory\n", args[1]);
 		}
 	}

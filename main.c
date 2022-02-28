@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:02 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/28 01:52:06 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/02/28 02:54:04 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,34 @@ void	parse(void)
 	else
 		parse_commands(tokens);
 	free_tokens(tokens);
+	free(lexer->cmd);
 	free(lexer);
+}
+
+void	free_cmd(t_command *cmd)
+{
+	int i;
+	t_command *tmp;
+	t_redirect *red;
+
+	while (cmd)
+	{
+		i = 0;
+		while (cmd->args[i])
+			free(cmd->args[i++]);
+		free(cmd->args);
+		free(cmd->cmd);
+		while (cmd->red)
+		{
+			red = cmd->red;
+			free(red->file);
+			free(red);
+			cmd->red = cmd->red->next;
+		}
+		tmp = cmd;
+		cmd = cmd->next;
+		free(tmp);
+	}
 }
 
 void	execute(t_command *cmd)
@@ -46,6 +73,7 @@ void	execute(t_command *cmd)
 		complex_cmd(cmd);
 	g_all.forked = 0;
 	close_heredocs(cmd);
+	free_cmd(cmd);
 }
 
 int	main(int argc, char **argv, char **envv)
@@ -68,6 +96,6 @@ int	main(int argc, char **argv, char **envv)
 			if (g_all.cmd && !g_all.lexer_err)
 				execute(g_all.cmd);
 		}
-	}	
+	}
 	return (0);
 }
