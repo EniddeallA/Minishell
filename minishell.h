@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/03/01 00:12:29 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/01 17:13:18 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,7 +224,7 @@ void		single_cmd(t_command *cmd, t_pipe *p);
 void		multiple_cmds(t_command *cmd, t_pipe *p);
 void		last_cmd(t_command *cmd, t_pipe *p);
 void		execute_cmd(t_command *cmd);
-void		redirect(t_command *cmd);
+void			redirect(t_command *cmd);
 void		exec_ve(t_command *cmd);
 void		execute_builtins(t_command *cmd);
 

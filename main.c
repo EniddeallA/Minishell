@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:02 by akhalid           #+#    #+#             */
-/*   Updated: 2022/03/01 00:11:58 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/01 17:07:26 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,3 +84,10 @@ int	main(int argc, char **argv, char **envv)
 	}
 	return (0);
 }
+
+/*
+chmod 000 filel
+echo haha > filel > file2 > file3
+
+cat << a << b
+*/

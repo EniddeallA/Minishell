@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 03:14:41 by akhalid           #+#    #+#             */
-/*   Updated: 2022/02/28 20:22:44 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/01 16:30:03 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ char	*ft_strdup(char *s1)
 	int		i;
 
 	i = 0;
+	if (!s1)
+		return (0);
 	while (s1[i])
 		i++;
 	dup = (char *)malloc(i + 1);

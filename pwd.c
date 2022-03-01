@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 02:40:13 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/28 02:40:34 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/01 16:46:51 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,12 @@ void	ft_pwd(void)
 	else
 	{
 		temp = get_value("PWD");
-		replace_value("PWD", temp);
-		printf("%s\n", temp);
+		if (temp)
+		{
+			replace_value("PWD", temp);
+			printf("%s\n", temp);
+		}	
+		else
+			printf("minishell: cd: .: No such file or directory\n");
 	}
 }
