@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 05:28:26 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/03/01 16:15:09 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/02 02:33:49 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	ft_cd1(void)
 	char	*tmp;
 
 	if (!key_exist("HOME"))
+	{
 		printf("minishell: cd: HOME not set\n");
+		g_all.exit_status = 1;
+	}
 	else
 	{
 		oldpwd = getcwd(NULL, 0);
@@ -27,7 +30,17 @@ void	ft_cd1(void)
 		tmp = get_value("HOME");
 		chdir(tmp);
 		replace_value("PWD", tmp);
+		g_all.exit_status = 0;
 	}
+}
+
+void	free_tmpp(char *tmp, int i)
+{
+	free(tmp);
+	if (i)
+		g_all.exit_status = 1;
+	else
+		g_all.exit_status = 0;
 }
 
 void	ft_cd(char **args)
@@ -47,13 +60,13 @@ void	ft_cd(char **args)
 			replace_value("OLDPWD", oldpwd);
 			tmp = getcwd(NULL, 0);
 			replace_value("PWD", tmp);
-			free(tmp);
+			free_tmpp(tmp, 0);
 		}
 		else
 		{
 			tmp = getcwd(NULL, 0);
 			replace_value("PWD", tmp);
-			free(tmp);
+			free_tmpp(tmp, 1);
 			printf("minishell: cd: %s: No such file or directory\n", args[1]);
 		}
 	}

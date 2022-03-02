@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 17:03:54 by akhalid           #+#    #+#             */
-/*   Updated: 2022/03/01 17:12:54 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/02 01:17:59 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	single_cmd(t_command *cmd, t_pipe *p)
 	{
 		signal(SIGQUIT, SIG_DFL);
 		redirect(cmd);
-		execute_cmd(cmd);
+		if (g_all.exit_status != 1 || !g_all.ret)
+			execute_cmd(cmd);
 	}
 	close(p->inp);
 	close(p->outp);
@@ -40,7 +41,8 @@ void	multiple_cmds(t_command *cmd, t_pipe *p)
 		dup2(p->inp, 0);
 		close(p->pipe[0]);
 		redirect(cmd);
-		execute_cmd(cmd);
+		if (g_all.exit_status != 1 || !g_all.ret)
+			execute_cmd(cmd);
 	}
 	if (p->inp > 2)
 		close(p->inp);
@@ -60,7 +62,8 @@ void	last_cmd(t_command *cmd, t_pipe *p)
 		if (p->inp)
 			close(p->inp);
 		redirect(cmd);
-		execute_cmd(cmd);
+		if (g_all.exit_status != 1 || !g_all.ret)
+			execute_cmd(cmd);
 	}
 	if (p->pipe[1] != 1)
 		close(p->pipe[1]);
@@ -102,7 +105,8 @@ void	simple_cmd(t_command *cmd)
 	inp = dup(0);
 	outp = dup(1);
 	redirect(cmd);
-	execute_builtins(cmd);
+	if (g_all.exit_status != 1 || !g_all.ret)
+		execute_builtins(cmd);
 	dup2(inp, 0);
 	dup2(outp, 1);
 	close(inp);

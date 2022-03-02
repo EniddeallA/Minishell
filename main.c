@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:02 by akhalid           #+#    #+#             */
-/*   Updated: 2022/03/01 17:07:26 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/02 02:37:48 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ void	execute(t_command *cmd)
 
 void	init_g_all(void)
 {
-	g_all.lexer_err = 0;
-	g_all.ret = 0;
 	free_cmd();
 	g_all.line = NULL;
 	g_all.cmd = NULL;
+	g_all.ret = 0;
+	g_all.lexer_err = 0;
 }
 
 int	main(int argc, char **argv, char **envv)
@@ -84,10 +84,3 @@ int	main(int argc, char **argv, char **envv)
 	}
 	return (0);
 }
-
-/*
-chmod 000 filel
-echo haha > filel > file2 > file3
-
-cat << a << b
-*/

@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/03/01 17:13:18 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/02 02:11:52 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,6 +212,7 @@ char		*ft_strchr(const char *str, int c);
 void		free_rdr(t_redirect *rdr);
 void		free_cmd(void);
 int			check_ambigous_file(t_token **tokens);
+size_t		ft_strlcpy(char *dest, const char *src, size_t dstsize);
 
 /*
 	execute.c
@@ -224,7 +225,7 @@ void		single_cmd(t_command *cmd, t_pipe *p);
 void		multiple_cmds(t_command *cmd, t_pipe *p);
 void		last_cmd(t_command *cmd, t_pipe *p);
 void		execute_cmd(t_command *cmd);
-void			redirect(t_command *cmd);
+void		redirect(t_command *cmd);
 void		exec_ve(t_command *cmd);
 void		execute_builtins(t_command *cmd);
 

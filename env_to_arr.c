@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 03:18:14 by akhalid           #+#    #+#             */
-/*   Updated: 2022/03/01 16:34:28 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/02 02:23:10 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,13 @@ char	*get_env(t_env *env, int index)
 		i++;
 	}
 	str = NULL;
-	if (env->value || env->value[0] == '\0')
+	if (env->value)
 	{
-		str = ft_strjoin(ft_strdup(env->key), ft_strdup("="));
-		str = ft_strjoin(str, ft_strdup(env->value));
+		if (env->value || env->value[0] == '\0')
+		{
+			str = ft_strjoin(ft_strdup(env->key), ft_strdup("="));
+			str = ft_strjoin(str, ft_strdup(env->value));
+		}
 	}
 	return (str);
 }

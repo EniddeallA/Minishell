@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 03:01:47 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/27 23:07:38 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/02 02:32:46 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	check_str(char *str)
 
 void	ft_exit(char **args)
 {
+	g_all.exit_status = 1;
 	if (args[1])
 	{
 		if (args[2])

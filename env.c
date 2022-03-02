@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 02:10:39 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/02/25 02:55:39 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/02 02:35:27 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ void	ft_env(char **args)
 			tmp = tmp->next;
 		}
 	}
+	g_all.exit_status = 0;
 }
