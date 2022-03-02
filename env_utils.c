@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 03:32:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/03/02 02:24:12 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/02 03:11:30 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	replace_value(char *key, char *new_value)
 			env = env->next;
 		}
 	}
+	free_env_arr();
+	g_all.env_arr = env_to_arr();
 }
 
 void	delete_envv(char *key)

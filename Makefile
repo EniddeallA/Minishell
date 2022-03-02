@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+         #
+#    By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 14:24:17 by akhalid           #+#    #+#              #
-#    Updated: 2022/03/01 00:13:59 by akhalid          ###   ########.fr        #
+#    Updated: 2022/03/02 02:59:40 by aelkhalo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,12 @@ NAME		=	minishell
 CC			=	gcc
 CFLAG		=	-Werror -Wextra -Wall -g
 LRL			=	"-lreadline"
-LDFLAGS		=	"-L/Users/akhalid/homebrew/Cellar/readline/8.1.2/lib"
-CPPFLAGS	=	"-I/Users/akhalid/homebrew/Cellar/readline/8.1.2/include"
+# LDFLAGS		=	"-L/Users/akhalid/homebrew/Cellar/readline/8.1.2/lib"
+# CPPFLAGS	=	"-I/Users/akhalid/homebrew/Cellar/readline/8.1.2/include"
+
+LDFLAGS		=	"-L/goinfre/aelkhalo/.brew/Cellar/readline/8.1.2/lib"
+CPPFLAGS	=	"-I/goinfre/aelkhalo/.brew/Cellar/readline/8.1.2/include"
+
 
 SRC_MAIN	=	main.c collect_env.c env.c env_utils.c execute_cmd.c exit.c	\
 				expand_utils.c ft_itoa.c heredoc.c parse_redirection.c		\
