@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 17:03:54 by akhalid           #+#    #+#             */
-/*   Updated: 2022/03/02 21:14:53 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/02 23:00:24 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	single_cmd(t_command *cmd, t_pipe *p)
 	{
 		signal(SIGQUIT, SIG_DFL);
 		redirect(cmd);
-		if (g_all.exit_status != 1 || !g_all.ret)
+		if (!g_all.exit_status || !g_all.ret)
 			execute_cmd(cmd);
 	}
 	close(p->inp);
@@ -41,13 +41,16 @@ void	multiple_cmds(t_command *cmd, t_pipe *p)
 		dup2(p->inp, 0);
 		close(p->pipe[0]);
 		redirect(cmd);
-		if (g_all.exit_status != 1 || !g_all.ret)
+		if (!g_all.exit_status || !g_all.ret)
 			execute_cmd(cmd);
+		else
+			exit(42);
 	}
 	if (p->inp > 2)
 		close(p->inp);
 	p->inp = p->pipe[0];
 	close(p->outp);
+	g_all.ret = 0;
 }
 
 void	last_cmd(t_command *cmd, t_pipe *p)
@@ -62,8 +65,10 @@ void	last_cmd(t_command *cmd, t_pipe *p)
 		if (p->inp)
 			close(p->inp);
 		redirect(cmd);
-		if (g_all.exit_status != 1 || !g_all.ret)
+		if (!g_all.exit_status || !g_all.ret)
 			execute_cmd(cmd);
+		else
+			exit(42);
 	}
 	if (p->pipe[1] != 1)
 		close(p->pipe[1]);

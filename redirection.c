@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 04:44:31 by akhalid           #+#    #+#             */
-/*   Updated: 2022/03/02 02:20:47 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/02 22:26:49 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	create_file(t_redirect *red)
 	else if (red->type == APND)
 		fd = open(red->file, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (fd == -1)
-		printf("%s\n", strerror(errno));
+		perror("");
 	return (fd);
 }
 
