@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 05:28:26 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/03/02 02:33:49 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/02 21:35:22 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,31 +43,38 @@ void	free_tmpp(char *tmp, int i)
 		g_all.exit_status = 0;
 }
 
+void	update_pwds(void)
+{
+	char	*oldnode;
+	char	*currentnode;
+	char	*pwd;
+
+	oldnode = get_value("OLDPWD");
+	currentnode = get_value("PWD");
+	if (oldnode)
+		oldnode = ft_strdup(currentnode);
+	if (currentnode)
+	{
+		pwd = (char *)malloc(sizeof(char) * 100);
+		getcwd(pwd, 100);
+		currentnode = pwd;
+	}
+}
+
 void	ft_cd(char **args)
 {
-	char	*oldpwd;
-	char	*tmp;
-
+	g_all.exit_status = 0;
 	if (n_args(args) == 1 || !ft_strcmp(args[1], "~"))
 		ft_cd1();
 	else
 	{
-		oldpwd = get_value("PWD");
 		if (chdir(args[1]) == 0)
-		{
-			if (!key_exist("OLDPWD"))
-				add_envv("OLDPWD", "");
-			replace_value("OLDPWD", oldpwd);
-			tmp = getcwd(NULL, 0);
-			replace_value("PWD", tmp);
-			free_tmpp(tmp, 0);
-		}
+			update_pwds();
 		else
 		{
-			tmp = getcwd(NULL, 0);
-			replace_value("PWD", tmp);
-			free_tmpp(tmp, 1);
-			printf("minishell: cd: %s: No such file or directory\n", args[1]);
+			write(2, args[1], ft_strlen(args[1]));
+			perror(": ");
+			g_all.exit_status = 1;
 		}
 	}
 }
