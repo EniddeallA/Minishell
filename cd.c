@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 05:28:26 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/03/03 01:29:55 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/03 01:35:40 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	update_pwds(void)
 		getcwd(pwd, 100);
 		currentnode->value = pwd;
 	}
+	free_env_arr();
+	g_all.env_arr = env_to_arr();
 }
 
 void	ft_cd(char **args)
