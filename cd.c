@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 05:28:26 by aelkhalo          #+#    #+#             */
-/*   Updated: 2022/03/02 21:35:57 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/03 01:29:55 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,30 +34,27 @@ void	ft_cd1(void)
 	}
 }
 
-void	free_tmpp(char *tmp, int i)
-{
-	free(tmp);
-	if (i)
-		g_all.exit_status = 1;
-	else
-		g_all.exit_status = 0;
-}
-
 void	update_pwds(void)
 {
-	char	*oldnode;
-	char	*currentnode;
+	t_env	*oldnode;
+	t_env	*currentnode;
 	char	*pwd;
 
-	oldnode = get_value("OLDPWD");
-	currentnode = get_value("PWD");
+	if (!key_exist("OLDPWD"))
+		add_envv("OLDPWD", "");
+	oldnode = get_node("OLDPWD");
+	if (oldnode && oldnode->value)
+		free(oldnode->value);
+	currentnode = get_node("PWD");
+	if (currentnode && currentnode->value)
+		free(currentnode->value);
 	if (oldnode)
-		oldnode = ft_strdup(currentnode);
+		oldnode->value = ft_strdup(currentnode->value);
 	if (currentnode)
 	{
 		pwd = (char *)malloc(sizeof(char) * 100);
 		getcwd(pwd, 100);
-		currentnode = pwd;
+		currentnode->value = pwd;
 	}
 }
 

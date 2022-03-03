@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:08:01 by akhalid           #+#    #+#             */
-/*   Updated: 2022/03/02 21:35:33 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/03 01:33:54 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,6 +245,7 @@ void		delete_envv(char *key);
 void		replace_value(char *key, char *new_value);
 char		*get_value(char *key);
 int			key_exist(char *key);
+t_env		*get_node(char *key);
 
 /*
 	env_to_arr.c

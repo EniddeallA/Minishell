@@ -6,11 +6,28 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 03:18:14 by akhalid           #+#    #+#             */
-/*   Updated: 2022/03/02 02:23:10 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/03 01:33:34 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+t_env	*get_node(char *key)
+{
+	t_env	*env;
+
+	env = g_all.env;
+	if (env)
+	{
+		while (env)
+		{
+			if (!ft_strcmp(env->key, key))
+				return (env);
+			env = env->next;
+		}
+	}
+	return (0);
+}
 
 void	free_env_arr(void)
 {
