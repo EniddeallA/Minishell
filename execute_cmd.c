@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 04:45:31 by akhalid           #+#    #+#             */
-/*   Updated: 2022/03/02 22:23:49 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/03 01:49:59 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	exec_ve(t_command *cmd)
 		execve(path, cmd->args, g_all.env_arr);
 		perror(path);
 		write(2, "\n", 1);
-		exit(126);
+		exit(127);
 	}
 	else
 	{
