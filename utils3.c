@@ -6,7 +6,7 @@
 /*   By: akhalid <akhalid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 03:31:22 by akhalid           #+#    #+#             */
-/*   Updated: 2022/03/01 00:12:11 by akhalid          ###   ########.fr       */
+/*   Updated: 2022/03/03 02:16:39 by akhalid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	syntax_error(t_token **tokens)
 	i = 0;
 	prev = -1;
 	curr = 0;
+	g_all.exit_status = 258;
 	while (tokens[i])
 	{
 		curr = tokens[i]->type;
@@ -34,6 +35,7 @@ int	syntax_error(t_token **tokens)
 	}
 	if (curr != WRD)
 		return (0);
+	g_all.exit_status = 0;
 	return (1);
 }
 
